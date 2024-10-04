@@ -31,8 +31,6 @@ local plugins = {
   {
     "danymat/neogen",
     config = true,
-    -- Uncomment next line if you want to follow only stable versions
-    -- version = "*"
   },
   {
     "iamcco/markdown-preview.nvim",
@@ -77,8 +75,10 @@ local plugins = {
           graphql = { "prettier" },
           lua = { "stylua" },
           python = { "black" },
-          blade = { "tlint" },
+          blade = { "blade-formatter" },
           php = { "pretty-php" },
+          sql = { "prettier" },
+          c = { "clang-format" },
           [""] = { "trim_whitespace" },
         },
         format_on_save = {
@@ -231,7 +231,12 @@ local plugins = {
       "nvim-tree/nvim-web-devicons",
     },
     config = function()
-      require("octo").setup()
+      require("octo").setup {
+        users = "assignable",
+        suppress_missing_scope = {
+          projects_v2 = true,
+        },
+      }
     end,
   },
   {
@@ -374,5 +379,281 @@ local plugins = {
   --   "ggandor/leap.nvim",
   --   lazy = false,
   -- },
+  --
+  {
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    opts = {
+      lsp = {
+        hover = { enabled = false }, -- <-- HERE!
+        signature = { enabled = false }, -- <-- HERE!
+      },
+      presets = {
+        bottom_search = true, -- use a classic bottom cmdline for search
+        long_message_to_split = true, -- long messages will be sent to a split
+        -- command_palette = true,
+      },
+      view = "split",
+      filter = { event = "msg_show", max_height = 20 },
+      views = {
+        confirm = {
+          enter = true,
+        },
+        split = {
+          enter = true,
+        },
+        cmdline_popup = {
+          position = {
+            row = "40%",
+            col = "50%",
+          },
+          size = {
+            width = 60,
+            height = "auto",
+          },
+        },
+        popupmenu = {
+          relative = "editor",
+          position = {
+            row = "55%",
+            col = "50%",
+          },
+          size = {
+            width = 60,
+            height = 10,
+          },
+          border = {
+            style = "rounded",
+            padding = { 0, 1 },
+          },
+          win_options = {
+            winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+          },
+        },
+      },
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    },
+  },
+  {
+    "rcarriga/nvim-notify",
+    lazy = false,
+    config = function()
+      require("notify").setup {
+        stages = "fade_in_slide_out",
+        background_colour = "FloatShadow",
+        render = "wrapped-compact",
+      }
+      vim.notify = require "notify"
+    end,
+  },
+  {
+    "wellle/targets.vim",
+    lazy = false,
+  },
+  {
+    "nvim-pack/nvim-spectre",
+  },
+  {
+    "sindrets/diffview.nvim",
+    lazy = false,
+  },
+  {
+    -- "m4xshen/hardtime.nvim",
+    -- event = "VeryLazy",
+    -- dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    -- opts = {
+    --   disabled_keys = {
+    --     ["<Up>"] = {},
+    --     ["<Left>"] = {},
+    --     ["<Right>"] = {},
+    --     ["<Down>"] = {},
+    --   },
+    -- },
+  },
+  {
+    "EmranMR/tree-sitter-blade",
+    lazy = false,
+  },
+  {
+    "tpope/vim-dadbod",
+    dependencies = {
+      { "kristijanhusak/vim-dadbod-completion", event = "VeryLazy" },
+      { "kristijanhusak/vim-dadbod-ui", event = "VeryLazy" },
+    },
+    event = "VeryLazy",
+  },
+  {
+    "chrisgrieser/nvim-spider",
+    lazy = true,
+    keys = {
+      {
+        "e",
+        "<cmd>lua require('spider').motion('e', {customPatterns = {'%u+%l+', '%f[%w]%u?%w+', '^%p+%f[%s]', '%f[^%s]%p+$', '^%p+$' }})<CR>",
+        mode = { "n", "o", "x" },
+      },
+      {
+        "w",
+        "<cmd>lua require('spider').motion('w', {customPatterns = {'%u+','%f[%w]%w+', '^%p+%f[%s]', '%f[^%s]%p+$', '^%p+$' }})<CR>",
+        mode = { "n", "o", "x" },
+      },
+      -- { "w", "<cmd>lua require('spider').motion('w')<CR>", mode = { "n", "o", "x" } },
+      {
+        "b",
+        "<cmd>lua require('spider').motion('b', {customPatterns = {'%u+','%f[%w]%w+', '^%p+%f[%s]', '%f[^%s]%p+$', '^%p+$' }})<CR>",
+        mode = { "n", "o", "x" },
+      },
+    },
+    opts = { subwordExcludeNumber = false },
+  },
+  {
+    "chrisgrieser/nvim-various-textobjs",
+    lazy = false,
+    opts = {
+      useDefaultKeymaps = true,
+      disabledKeymaps = { "an", "in", "aN", "iN", "n" },
+    },
+  },
+  {
+    "LudoPinelli/comment-box.nvim",
+    event = "VeryLazy",
+  },
+  {
+    "folke/todo-comments.nvim",
+    lazy = false,
+    config = function()
+      require("todo-comments").setup()
+    end,
+  },
+  {
+    "gbprod/stay-in-place.nvim",
+    config = function()
+      require("stay-in-place").setup()
+    end,
+    event = "VeryLazy",
+  },
+  {
+    "max397574/colortils.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup {
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          hide_during_completion = true,
+          debounce = 75,
+          keymap = {
+            accept = "<right>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-space>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+        panel = {
+          enabled = true,
+          auto_refresh = false,
+          keymap = {
+            jump_prev = "[[",
+            jump_next = "]]",
+            accept = "<CR>",
+            refresh = "gr",
+            open = "<C-right>",
+          },
+          layout = {
+            position = "bottom", -- | top | left | right
+            ratio = 0.3,
+          },
+        },
+      }
+    end,
+  },
+  {
+    "MarcHamamji/runner.nvim",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+    },
+    config = function()
+      require("runner").setup {
+        handlers = {
+          elixir = function(bufnr)
+            local helpers = require "runner.handlers.helpers"
+            helpers.shell_handler("elixir " .. vim.fn.expand "%")(bufnr)
+          end,
+        },
+      }
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap",
+    config = function()
+      local dap = require "dap"
+      dap.adapters.php = {
+        type = "executable",
+        command = "node",
+        args = { "/home/ewan/.local/share/nvim/mason/packages/php-debug-adapter/extension/out/phpDebug.js" },
+      }
+
+      dap.configurations.php = {
+        {
+          type = "php",
+          request = "launch",
+          name = "Listen for Xdebug",
+          port = 9003,
+          pathMappings = {
+            ["/var/www/html"] = "${workspaceFolder}",
+          },
+        },
+      }
+    end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+    -- event = "VeryLazy",
+    config = function()
+      require("dapui").setup()
+    end,
+  },
+  {
+    "mfussenegger/nvim-dap-python",
+    event = "VeryLazy",
+    ft = { "python" },
+    dependencies = { "mfussenegger/nvim-dap" },
+    config = function()
+      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      require("dap-python").setup(path)
+
+      local dap, dapui = require "dap", require "dapui"
+      dap.listeners.before.attach.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated.dapui_config = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited.dapui_config = function()
+        dapui.close()
+      end
+
+      require("core.utils").load_mappings "dap_python"
+    end,
+  },
 }
 return plugins

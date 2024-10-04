@@ -13,15 +13,35 @@ M.text = {
   i = {
     ["<C-Up>"] = { "<cmd> :m-2<CR>", " Move up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", " Move down" },
+    ["<C-s>"] = { "<cmd> w<CR>", " Move down" },
+    ["<left>"] = { "", "" },
   },
 
   n = {
     ["<C-Up>"] = { "<cmd> :m-2<CR>", " Move up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", " Move down" },
     ["<C-w>v"] = { "<C-w>v<left> <cmd> lua require('nvchad.tabufline').tabuflineNext() <CR>" },
+
+    ["<leader>p"] = { '"1p', "paste what you overrode with paste" },
+    -- ["k"] = { ":normal k (v:count > 1 ? m' . v:count : '') . 'k'" },
+    ["<leader>l"] = { "zf", " fold" },
+    ["<leader>k"] = { "za", "toggle fold" },
+    -- ["<leader>l"] = { "zR", "open all fold" },
+    ["<leader>L"] = { "zX", "close all fold" },
+    ["[j"] = { "zj", "jump to next closed fold" },
+    ["[k"] = { "zk", "jump to previous closed fold" },
+
+    ["<leader>md"] = { "<cmd> MarkdownPreviewToggle <CR>", "toggle markdown preview" },
+
+    ["<leader>rr"] = { "<cmd>lua require('runner').run() <CR>", "run the current buffer" },
   },
 
   v = {
+    ["<leader>p"] = { '"1p', "paste what you overrode with paste" },
+
+    ["<leader>l"] = { "zf", " fold" },
+    ["<leader>k"] = { "za", "toggle fold" },
+    -- ["P"] = { 'ygv"1p' },
     -- ["<C-k"] = { "<cmd> :m '<-2<CR>gv=gv", "󰜸 Move selection up", opts = { silent = true } },
     -- ["<C-j>"] = { "<cmd> :m '>+1<CR>gv=gv", "󰜯 Move selection down", opts = { silent = true } },
   },
@@ -52,6 +72,7 @@ M.general = {
     ["<leader>rt"] = { ":lua require('neogen').generate({type = 'type'})<CR>", "Gen doc for type", opts = opts },
 
     ["<leader>j"] = { "<cmd> :normal! zz <CR>", "Center buffer on cursor" },
+    ["<leader>rw"] = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search current word" },
 
     ["<leader>fm"] = {
       function()
@@ -106,6 +127,10 @@ M.general = {
   },
 
   v = {
+    ["<leader>j"] = { "<cmd> :normal! zz <CR>", "Center buffer on cursor" },
+
+    ["<leader>rw"] = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search current word" },
+
     ["<leader>fm"] = {
       function()
         require("conform").format {
@@ -192,9 +217,6 @@ M.telescope = {
     ["<leader>cm"] = { "<cmd> Telescope git_commits <CR>", "Git commits" },
     ["<leader>gt"] = { "<cmd> Telescope git_status <CR>", "Git status" },
 
-    -- pick a hidden term
-    ["<leader>pt"] = { "<cmd> Telescope terms <CR>", "Pick hidden term" },
-
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
 
@@ -233,7 +255,7 @@ M.session = {
 
 M.diagnostics = {
   n = {
-    ["<leader>t"] = { "<cmd>TroubleToggle<cr>", "󰔫 Toggle warnings" },
+    ["<leader>tt"] = { "<cmd>TroubleToggle<cr>", "󰔫 Toggle warnings" },
     ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<cr>", " Todo/Fix/Fixme" },
   },
 }
@@ -244,5 +266,60 @@ M.octo = {
     ["<leader>gpc"] = { "<cmd> :Octo pr create <CR>", "🐙 create a pull request" },
   },
 }
+
+M.color_picker = {
+  n = {
+    ["<leader>cp"] = { "<cmd> Colortils <CR>", "Color picker" },
+    ["<leader>cl"] = { "<cmd> Colortils lighten <CR>", "Color lighten" },
+    ["<leader>cd"] = { "<cmd> Colortils darken <CR>", "Color darken" },
+  },
+}
+
+M.dap = {
+  n = {
+    ["<leader>ds"] = { "<cmd>lua require'dap'.toggle_breakpoint()<CR>", "Toggle breakpoint" },
+    ["<leader>dc"] = { "<cmd>lua require'dapui'.close()<CR>", "close dapui" },
+    ["<leader>dm"] = { "<cmd>DapContinue<CR>", "DAP continue" },
+    ["<leader>dj"] = { "<cmd>DapStepInto<CR>", "DAP stepInto" },
+    ["<leader>dk"] = { "<cmd>DapStepOut<CR>", "DAP Step Out" },
+    ["<leader>dl"] = { "<cmd>DapStepOver<CR>", "DAP Step Over" },
+
+    ["<leader>da"] = { "<cmd>lua require('dapui').elements.watches.add()<CR>", "watcher add" },
+    ["<leader>dr"] = { "<cmd>lua require('dapui').elements.watches.remove()<CR>", "watcher remove" },
+    ["<leader>de"] = { "<cmd>lua require('dapui').elements.watches.edit()<CR>", "watcher edit" },
+  },
+}
+
+M.dap_python = {
+  plugin = true,
+  n = {
+    ["<leader>dd"] = {
+      "<cmd> lua require('dap-python').test_class() <CR>",
+      "Test method",
+    },
+  },
+}
+
+vim.keymap.set({ "o", "x" }, "as", '<cmd>lua require("various-textobjs").subword("outer")<CR>')
+vim.keymap.set({ "o", "x" }, "is", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
+vim.keymap.set({ "o", "x" }, "ac", '<cmd>lua require("various-textobjs").cssColor("outer")<CR>')
+vim.keymap.set({ "o", "x" }, "ic", '<cmd>lua require("various-textobjs").cssColor("inner")<CR>')
+vim.keymap.set({ "o", "x" }, "aN", '<cmd>lua require("various-textobjs").number("outer")<CR>')
+vim.keymap.set({ "o", "x" }, "iN", '<cmd>lua require("various-textobjs").number("inner")<CR>')
+vim.keymap.set({ "o", "x" }, "aa", '<cmd>lua require("various-textobjs").indentation("outer", "outer")<CR>')
+
+vim.keymap.set({ "o", "x" }, "o", "iw")
+vim.keymap.set({ "x" }, "m", "o")
+vim.keymap.set({ "o", "x" }, "O", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
+vim.keymap.set({ "o", "x" }, "q", '<cmd>lua require("various-textobjs").toNextQuotationMark()<CR>')
+vim.keymap.set({ "o", "x" }, "'", '<cmd>lua require("various-textobjs").anyQuote("inner")<CR>')
+
+local keymap = vim.keymap.set
+
+keymap({ "n", "v" }, "<Leader>cb", "<Cmd>CBccbox<CR>", opts)
+keymap({ "n", "v" }, "<Leader>ct", "<Cmd>CBllline<CR>", opts)
+keymap("n", "<Leader>cl", "<Cmd>CBline<CR>", opts)
+keymap({ "n", "v" }, "<Leader>cm", "<Cmd>CBllbox14<CR>", opts)
+keymap({ "n", "v" }, "<Leader>cd", "<Cmd>CBd<CR>", opts)
 
 return M

@@ -1,11 +1,15 @@
 ---@type ChadrcConfig
 local M = {}
+
 M.ui = {
-  theme = "catppuccin",
-  theme_toggle = { "catppuccin", "nord" },
+  -- tabufline = { enabled = false },
+
+  theme = "onenord",
+  theme_toggle = { "onenord", "nord" },
 
   hl_override = {
-    ["Normal"] = { bg = "NONE" },
+    ["Normal"] = { fg = "#D8DEE9", bg = "NONE" },
+    ["@variable"] = { fg = "white", bg = "NONE" },
     ["NormalFloat"] = { bg = "NONE" },
     ["LineNr"] = { fg = "orange" },
     ["CursorLineNr"] = { fg = "vibrant_green" },
@@ -13,7 +17,26 @@ M.ui = {
     ["Substitute"] = { fg = "black", bg = "orange" },
     ["Search"] = { fg = "#1e1d2d", bg = "#abe9b3" },
     --   ["NvimTreeNormal"] = { bg = "NONE"},
+    ["Visual"] = { bg = "#214283" },
+    ["@comment"] = { fg = "#717276" },
+    ["St_file_info"] = { fg = "#afffcf" },
+
+    -- ["IndentBlanklineContextStart"] = { bg = "#515256" },
+    -- ["IndentBlanklineContextStart"] = { bg = "#afffcf" },
+    ["IndentBlanklineContextChar"] = { fg = "#afffcf" },
+
+    -- Diff
+    ["DiffChange"] = { fg = "black", bg = "orange" },
+    ["DiffModified"] = { fg = "black", bg = "orange" },
+    ["DiffTex"] = { fg = "#1e1d2d", bg = "green" },
+    ["DiffAdd"] = { fg = "#1e1d2d", bg = "green" },
+    ["DiffAdded"] = { fg = "#1e1d2d", bg = "green" },
+    ["DiffDelete"] = { fg = "#1e1d2d", bg = "red" },
+    ["DiffRemoved"] = { fg = "#1e1d2d", bg = "red" },
+    ["diff_change_delete"] = { fg = "#1e1d2d", bg = "red" },
   },
+
+  -- telescope = { style = "bordered" },
 
   statusline = {
     overriden_modules = function(modules)
@@ -81,5 +104,20 @@ M.ui = {
 M.plugins = "custom.plugins"
 
 M.mappings = require "custom.mappings"
+
+vim.api.nvim_create_autocmd({ "BufModifiedSet", "BufReadPost", "BufNewFile", "BufWinEnter" }, {
+  pattern = "<buffer>",
+
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
+
+    -- print(bufnr, cur_buf())
+    if vim.bo[buf].modified then
+      vim.api.nvim_set_hl(0, "St_file_info", { fg = "#ff034f" })
+    else
+      vim.api.nvim_set_hl(0, "St_file_info", { fg = "#afffcf" })
+    end
+  end,
+})
 
 return M

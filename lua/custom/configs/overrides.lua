@@ -17,15 +17,16 @@ M.treesitter = {
     "php",
     "xml",
   },
+  -- highlight = true,
   indent = {
     enable = true,
     -- disable = {
     --   "python"
     -- },
   },
-  autotag = {
-    enable = true,
-  },
+  -- autotag = {
+  --   enable = true,
+  -- },
 }
 
 M.harpoon = {}
@@ -98,6 +99,8 @@ M.telescope = {
     "undo",
     "docker",
     "fzf",
+    "notify",
+    "noice",
   },
   extensions = {
     fzf = {
@@ -203,6 +206,7 @@ M.telescope = {
 
 M.cmp = {
   mapping = {
+    ["<C-e>"] = require("cmp").mapping.close(),
     ["<C-k>"] = require("cmp").mapping.select_prev_item(),
     ["<C-j>"] = require("cmp").mapping.select_next_item(),
     ["<Tab>"] = require("cmp").mapping.confirm(),
