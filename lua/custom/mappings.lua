@@ -15,6 +15,8 @@ M.text = {
     ["<C-Down>"] = { "<cmd> :m+<CR>", " Move down" },
     ["<C-s>"] = { "<cmd> w<CR>", " Move down" },
     ["<left>"] = { "", "" },
+    -- ["<CR>"] = { "", "" },
+    -- ["<C-m>"] = {""}
   },
 
   n = {
@@ -35,6 +37,7 @@ M.text = {
 
     ["<leader>rr"] = { "<cmd>lua require('runner').run() <CR>", "run the current buffer" },
     ["<leader>db"] = { "<cmd>DBUIToggle <CR>", "dadbod ui" },
+    ["<leader>ca"] = { "<cmd>lua require('tiny-code-action').code_action() <CR>", "dadbod ui" },
   },
 
   v = {
@@ -45,6 +48,7 @@ M.text = {
     -- ["P"] = { 'ygv"1p' },
     -- ["<C-k"] = { "<cmd> :m '<-2<CR>gv=gv", "󰜸 Move selection up", opts = { silent = true } },
     -- ["<C-j>"] = { "<cmd> :m '>+1<CR>gv=gv", "󰜯 Move selection down", opts = { silent = true } },
+    ["<leader>ca"] = { "<cmd>lua require('tiny-code-action').code_action() <CR>", "dadbod ui" },
   },
 
   c = {

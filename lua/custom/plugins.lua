@@ -674,9 +674,19 @@ local plugins = {
             local helpers = require "runner.handlers.helpers"
             helpers.shell_handler("elixir " .. vim.fn.expand "%")(bufnr)
           end,
+
           go = function(bufnr)
             local helpers = require "runner.handlers.helpers"
-            helpers.shell_handler("go run " .. vim.fn.expand "%")(bufnr)
+            local file_name = vim.fn.expand "%:t" -- Get the current buffer's file name
+            local dir = vim.fn.expand "%:p:h" -- Get the directory of the current buffer
+
+            if file_name == "main.go" then
+              -- Run the current file if it's main.go
+              helpers.shell_handler("go run " .. vim.fn.expand "%")(bufnr)
+            else
+              -- Run the main.go located in the buffer's directory
+              helpers.shell_handler("go run " .. dir .. "/../main.go")(bufnr)
+            end
           end,
         },
       }
@@ -756,6 +766,17 @@ local plugins = {
       end
 
       require("core.utils").load_mappings "dap_python"
+    end,
+  },
+  {
+    "rachartier/tiny-code-action.nvim",
+    dependencies = {
+      { "nvim-lua/plenary.nvim" },
+      { "nvim-telescope/telescope.nvim" },
+    },
+    event = "LspAttach",
+    config = function()
+      require("tiny-code-action").setup()
     end,
   },
 }
