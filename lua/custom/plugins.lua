@@ -404,23 +404,6 @@ local plugins = {
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
-      notify = {
-        enabled = true,
-        view = "notify",
-        opts = {
-          focusable = false,
-        },
-      },
-      routes = {
-        {
-          filter = {
-            event = "msg_show",
-            kind = "",
-            find = "written",
-          },
-          opts = { skip = true },
-        },
-      },
       lsp = {
         hover = { enabled = false }, -- <-- HERE!
         signature = { enabled = false }, -- <-- HERE!
@@ -428,45 +411,6 @@ local plugins = {
       presets = {
         bottom_search = true, -- use a classic bottom cmdline for search
         long_message_to_split = true, -- long messages will be sent to a split
-        -- command_palette = true,
-      },
-      view = "split",
-      filter = { event = "msg_show", max_height = 20 },
-      views = {
-        confirm = {
-          enter = true,
-        },
-        split = {
-          enter = true,
-        },
-        cmdline_popup = {
-          position = {
-            row = "40%",
-            col = "50%",
-          },
-          size = {
-            width = 60,
-            height = "auto",
-          },
-        },
-        popupmenu = {
-          relative = "editor",
-          position = {
-            row = "55%",
-            col = "50%",
-          },
-          size = {
-            width = 60,
-            height = 10,
-          },
-          border = {
-            style = "rounded",
-            padding = { 0, 1 },
-          },
-          win_options = {
-            winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
-          },
-        },
       },
     },
     dependencies = {
@@ -596,8 +540,10 @@ local plugins = {
     "chrisgrieser/nvim-various-textobjs",
     lazy = false,
     opts = {
-      useDefaultKeymaps = true,
-      disabledKeymaps = { "an", "in", "aN", "iN", "n" },
+      keymaps = {
+        useDefaults = true,
+        disabledDefaults = { "an", "in", "aN", "iN", "n" },
+      },
     },
   },
   {

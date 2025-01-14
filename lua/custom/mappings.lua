@@ -24,7 +24,7 @@ M.text = {
     ["<C-Down>"] = { "<cmd> :m+<CR>", " Move down" },
     ["<C-w>v"] = { "<C-w>v<left> <cmd> lua require('nvchad.tabufline').tabuflineNext() <CR>" },
 
-    ["<leader>p"] = { '"1p', "paste what you overrode with paste" },
+    -- ["<leader>p"] = { '"1p', "paste what you overrode with paste" },
     -- ["k"] = { ":normal k (v:count > 1 ? m' . v:count : '') . 'k'" },
     ["<leader>l"] = { "zf", " fold" },
     ["<leader>k"] = { "za", "toggle fold" },
@@ -41,7 +41,7 @@ M.text = {
   },
 
   v = {
-    ["<leader>p"] = { '"1p', "paste what you overrode with paste" },
+    ["<leader>p"] = { "p", "paste what you overrode with paste" },
 
     ["<leader>l"] = { "zf", " fold" },
     ["<leader>k"] = { "za", "toggle fold" },
@@ -150,10 +150,6 @@ M.general = {
       end,
       "Format file or range (in visual mode)",
     },
-  },
-
-  x = {
-    ["<leader>p"] = { '"_dp', "paste du sale" },
   },
 }
 
@@ -264,7 +260,7 @@ M.session = {
 
 M.diagnostics = {
   n = {
-    ["<leader>tt"] = { "<cmd>TroubleToggle<cr>", "󰔫 Toggle warnings" },
+    ["<leader>tt"] = { "<cmd>Trouble diagnostics toggle<cr>", "󰔫 Toggle warnings" },
     ["<leader>td"] = { "<cmd>TodoTrouble keywords=TODO,FIX,FIXME,BUG,TEST,NOTE<cr>", " Todo/Fix/Fixme" },
   },
 }
