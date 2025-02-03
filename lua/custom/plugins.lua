@@ -216,7 +216,10 @@ local plugins = {
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup {
-        -- Configuration here, or leave empty to use defaults
+        keymaps = {
+          visual = "s",
+          -- other keymaps...
+        },
       }
     end,
   },
@@ -309,7 +312,7 @@ local plugins = {
       },
       {
         "s",
-        mode = { "n", "x", "o" },
+        mode = { "n", "o" },
         function()
           require("flash").jump {
             jump = {
@@ -723,6 +726,31 @@ local plugins = {
     event = "LspAttach",
     config = function()
       require("tiny-code-action").setup()
+    end,
+  },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    ---@type snacks.Config
+    opts = {
+      scroll = {
+        animate = {
+          duration = {
+            step = 15,
+            total = 110,
+          },
+          easing = "linear",
+        },
+      },
+    },
+  },
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    -- install the latest stable version
+    version = "*",
+    config = function()
+      require("telescope").load_extension "frecency"
     end,
   },
 }

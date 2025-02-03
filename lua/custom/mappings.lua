@@ -200,7 +200,7 @@ M.telescope = {
   n = {
     -- find
     ["<leader>fk"] = { "<cmd>Telescope keymaps<CR>", " Find keymaps" },
-    ["<leader>."] = { "<cmd> Telescope find_files <CR>", "Find files" },
+    ["<leader>."] = { "<cmd> Telescope frecency workspace=CWD <CR>", "Find files" },
     ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
     ["<leader>fd"] = {
       "<cmd> Telescope find_files follow=true no_ignore=true hidden=true cwd=~/dotfiles_telescope/ depth=1<CR>",
@@ -324,7 +324,7 @@ local keymap = vim.keymap.set
 
 keymap({ "n", "v" }, "<Leader>cb", "<Cmd>CBccbox<CR>", opts)
 keymap({ "n", "v" }, "<Leader>ct", "<Cmd>CBllline<CR>", opts)
-keymap("n", "<Leader>cl", "<Cmd>CBline<CR>", opts)
+keymap("n", "<Leader>cb", "<Cmd>CBline<CR>", opts)
 keymap({ "n", "v" }, "<Leader>cm", "<Cmd>CBllbox14<CR>", opts)
 keymap({ "n", "v" }, "<Leader>cd", "<Cmd>CBd<CR>", opts)
 keymap({ "v" }, "r", "r")
