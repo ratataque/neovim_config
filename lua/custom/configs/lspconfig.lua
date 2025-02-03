@@ -211,6 +211,9 @@ lspconfig.sqls.setup {
     },
   },
 }
+
+lspconfig.svelte.setup {}
+
 -- lspconfig.dockerfile.setup({
 --   on_attach = on_attach,
 --   capabilities = capabilities,
