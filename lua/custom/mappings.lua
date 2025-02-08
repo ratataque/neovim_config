@@ -73,6 +73,8 @@ M.general = {
   },
 
   n = {
+    ["<leader>z"] = { ":lua require('zen-mode').toggle()<CR>", "Gen doc", opts = opts },
+
     ["<leader>ro"] = { ":Rooter<CR>", "rooter" },
     ["<leader>rd"] = { ":lua require('neogen').generate()<CR>", "Gen doc", opts = opts },
     ["<leader>rt"] = { ":lua require('neogen').generate({type = 'type'})<CR>", "Gen doc for type", opts = opts },
