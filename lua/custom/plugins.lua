@@ -764,7 +764,6 @@ local plugins = {
   -- Lua
   {
     "folke/zen-mode.nvim",
-    event = "very_lazy",
     opts = {
       window = {
         -- height and width can be:
@@ -786,19 +785,8 @@ local plugins = {
         },
       },
       plugins = {
-        -- disable some global vim options (vim.o...)
-        -- comment the lines to not apply the options
         gitsigns = { enabled = true }, -- disables git signs
         tmux = { enabled = true }, -- disables the tmux statusline
-        todo = { enabled = false }, -- if set to "true", todo-comments.nvim highlights will be disabled
-        -- this will change the font size on kitty when in zen mode
-        -- to make this work, you need to set the following kitty options:
-        -- - allow_remote_control socket-only
-        -- - listen_on unix:/tmp/kitty
-        kitty = {
-          enabled = false,
-          font = "+4", -- font size increment
-        },
       },
     },
   },
