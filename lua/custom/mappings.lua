@@ -200,7 +200,8 @@ M.telescope = {
   n = {
     -- find
     ["<leader>fk"] = { "<cmd>Telescope keymaps<CR>", " Find keymaps" },
-    ["<leader>."] = { "<cmd> Telescope frecency workspace=CWD <CR>", "Find files" },
+    ["<leader>."] = { "<cmd> Telescope find_files <CR>", "Find files" },
+    ["<leader>ff"] = { "<cmd> Telescope frecency workspace=CWD <CR>", "Find files" },
     ["<leader>fa"] = { "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>", "Find all" },
     ["<leader>fd"] = {
       "<cmd> Telescope find_files follow=true no_ignore=true hidden=true cwd=~/dotfiles_telescope/ depth=1<CR>",
