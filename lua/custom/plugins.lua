@@ -545,7 +545,7 @@ local plugins = {
     opts = {
       keymaps = {
         useDefaults = true,
-        disabledDefaults = { "an", "in", "aN", "iN", "n" },
+        disabledDefaults = { "an", "in", "aN", "iN", "n", "r" },
       },
     },
   },
@@ -752,6 +752,14 @@ local plugins = {
     config = function()
       require("telescope").load_extension "frecency"
     end,
+  },
+  {
+    "ChuufMaster/buffer-vacuum",
+    event = "VeryLazy",
+    opts = {
+      max_buffers = 5,
+      count_pinned_buffers = true,
+    },
   },
 }
 return plugins
