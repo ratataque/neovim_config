@@ -1,37 +1,6 @@
 -- vim.opt.colorcolumn = "80"
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
--- vim.notify = require "notify"
-
--- autocmd("BufOnModified", {
---   callback = function()
---     -- ["St_file_info"] = { fg = "#ff034f" },
---   end,
--- })
-
--- vim.api.nvim_create_autocmd({ "BufAdd", "BufEnter", "tabnew" }, {
---   callback = function()
---     vim.t.bufs = vim.tbl_filter(function(bufnr)
---       return vim.api.nvim_buf_get_option(bufnr, "modified")
---     end, vim.t.bufs)
---   end,
--- })
-
--- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
--- parser_config.blade = {
---   install_info = {
---     url = "https://github.com/EmranMR/tree-sitter-blade",
---     files = { "src/parser.c" },
---     branch = "main",
---   },
---   filetype = "blade",
--- }
-
-vim.filetype.add {
-  pattern = {
-    [".*%.blade%.php"] = "blade",
-  },
-}
 
 local g = vim.g
 
