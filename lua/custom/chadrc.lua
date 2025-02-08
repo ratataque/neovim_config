@@ -4,37 +4,36 @@ local M = {}
 M.ui = {
   -- tabufline = { enabled = false },
 
-  theme = "radium",
-  theme_toggle = { "radium", "nord" },
+  theme = "doomchad",
+  theme_toggle = { "doomchad", "nord" },
 
   hl_override = {
     ["Normal"] = { fg = "#D8DEE9", bg = "NONE" },
     ["@variable"] = { fg = "white", bg = "NONE" },
     ["NormalFloat"] = { bg = "NONE" },
-    ["LineNr"] = { fg = "orange" },
+    -- ["LineNr"] = { fg = "orange" },
+    -- ["LineNr"] = { fg = "#1e1e1e" },
+    ["LineNr"] = { fg = "#515256" },
     ["CursorLineNr"] = { fg = "vibrant_green" },
     ["IncSearch"] = { fg = "#ffffff", bg = "#ff034f" },
     ["Substitute"] = { fg = "black", bg = "orange" },
     ["Search"] = { fg = "#1e1d2d", bg = "#abe9b3" },
-    -- ["NvimTreeNormal"] = { bg = "#222223" },
+    --   ["NvimTreeNormal"] = { bg = "NONE"},
     ["Visual"] = { bg = "#214283" },
-    ["@comment"] = { fg = "#828276" },
+    ["@comment"] = { fg = "#717276" },
     ["St_file_info"] = { fg = "#afffcf" },
-    ["DiagnosticFloatingError"] = { fg = "#FF2D46" },
-    ["DiagnosticError"] = { fg = "#FF2D46" },
 
     -- ["IndentBlanklineContextStart"] = { bg = "#515256" },
     -- ["IndentBlanklineContextStart"] = { bg = "#afffcf" },
-    ["IndentBlanklineContextChar"] = { fg = "#afffcf" },
-    ["TelescopeSelection"] = { bg = "#214283" },
+    -- ["IndentBlanklineContextChar"] = { fg = "#afffcf" },
+    ["IndentBlanklineContextChar"] = { fg = "#995239" },
+    -- ["IndentBlanklineSpaceCharBlankline"] = { fg = "#995233" },
+    ["IndentBlanklineSpaceChar"] = { fg = "#333233" },
+    ["IndentBlanklineChar"] = { fg = "#333233" },
 
     -- Diff
-    ["DiffviewDiffChange"] = { fg = "#DB7D39" },
-    ["DiffviewStatusTypeChange"] = { fg = "#DB7D39", bg = "#DB7D39" },
-    -- ["DiffChange"] = { fg = "#D76F23" },
-    ["diffChanged"] = { fg = "#D76F23", bg = "#D76F23" },
-
-    -- ["DiffModified"] = { fg = "black", bg = "orange" },
+    ["DiffChange"] = { fg = "black", bg = "orange" },
+    ["DiffModified"] = { fg = "black", bg = "orange" },
     ["DiffTex"] = { fg = "#1e1d2d", bg = "green" },
     ["DiffAdd"] = { fg = "#1e1d2d", bg = "green" },
     ["DiffAdded"] = { fg = "#1e1d2d", bg = "green" },
@@ -133,5 +132,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.cmd [[ setlocal nofoldenable ]]
   end,
 })
+
+vim.opt.showtabline = 0 -- Completely disables tabline
 
 return M
