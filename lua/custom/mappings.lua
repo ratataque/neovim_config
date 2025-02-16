@@ -217,7 +217,7 @@ M.telescope = {
     ["<leader>/"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
     ["<leader>fu"] = { "<cmd> Telescope undo <CR> ", "Find in undo tree" },
 
-    ["cd"] = { "<cmd> Telescope file_browser <CR>", "file browser in cwd" },
+    -- ["cd"] = { "<cmd> Telescope file_browser <CR>", "file browser in cwd" },
 
     ["<leader>fp"] = { "<cmd> Telescope projects <CR>", "Find projects" },
 
@@ -318,7 +318,7 @@ vim.keymap.set({ "o", "x" }, "aa", '<cmd>lua require("various-textobjs").indenta
 vim.keymap.set({ "o", "x" }, "o", "iw")
 vim.keymap.set({ "o", "x" }, "(", "i(")
 vim.keymap.set({ "o", "x" }, "[", "i[")
-vim.keymap.set({ "x" }, "m", "o")
+vim.keymap.set({ "x" }, "/", "o")
 vim.keymap.set({ "o", "x" }, "O", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
 vim.keymap.set({ "o", "x" }, "q", '<cmd>lua require("various-textobjs").toNextQuotationMark()<CR>')
 vim.keymap.set({ "o", "x" }, "'", '<cmd>lua require("various-textobjs").anyQuote("inner")<CR>')

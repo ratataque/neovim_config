@@ -465,57 +465,57 @@ local plugins = {
     "EmranMR/tree-sitter-blade",
     lazy = false,
   },
-  {
-    "tpope/vim-dadbod",
-    dependencies = {
-      { "kristijanhusak/vim-dadbod-completion", event = "VeryLazy" },
-      { "kristijanhusak/vim-dadbod-ui", event = "VeryLazy" },
-    },
-    event = "VeryLazy",
-  },
-  {
-
-    "kristijanhusak/vim-dadbod-ui",
-    dependencies = {
-      { "tpope/vim-dadbod", lazy = true },
-      { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true }, -- Optional
-    },
-    cmd = {
-      "DBUI",
-      "DBUIToggle",
-      "DBUIAddConnection",
-      "DBUIFindBuffer",
-    },
-    init = function()
-      vim.g.db_ui_use_nerd_fonts = 1
-      vim.g.db_ui_auto_execute_table_helpers = 1
-    end,
-  },
-  {
-    "tpope/vim-dotenv",
-    event = "VeryLazy",
-    config = function()
-      local envFiles = {
-        ".env.local",
-        ".env",
-      }
-
-      local envFile = nil
-
-      for _, file in ipairs(envFiles) do
-        if vim.fn.filereadable(file) == 1 then
-          envFile = file
-          break
-        end
-      end
-
-      if envFile == nil then
-        return
-      end
-
-      vim.cmd("verbose Dotenv" .. envFile)
-    end,
-  },
+  -- {
+  --   "tpope/vim-dadbod",
+  --   dependencies = {
+  --     { "kristijanhusak/vim-dadbod-completion", event = "VeryLazy" },
+  --     { "kristijanhusak/vim-dadbod-ui", event = "VeryLazy" },
+  --   },
+  --   event = "VeryLazy",
+  -- },
+  -- {
+  --
+  --   "kristijanhusak/vim-dadbod-ui",
+  --   dependencies = {
+  --     { "tpope/vim-dadbod", lazy = true },
+  --     { "kristijanhusak/vim-dadbod-completion", ft = { "sql", "mysql", "plsql" }, lazy = true }, -- Optional
+  --   },
+  --   cmd = {
+  --     "DBUI",
+  --     "DBUIToggle",
+  --     "DBUIAddConnection",
+  --     "DBUIFindBuffer",
+  --   },
+  --   init = function()
+  --     vim.g.db_ui_use_nerd_fonts = 1
+  --     vim.g.db_ui_auto_execute_table_helpers = 1
+  --   end,
+  -- },
+  -- {
+  --   "tpope/vim-dotenv",
+  --   event = "VeryLazy",
+  --   config = function()
+  --     local envFiles = {
+  --       ".env.local",
+  --       ".env",
+  --     }
+  --
+  --     local envFile = nil
+  --
+  --     for _, file in ipairs(envFiles) do
+  --       if vim.fn.filereadable(file) == 1 then
+  --         envFile = file
+  --         break
+  --       end
+  --     end
+  --
+  --     if envFile == nil then
+  --       return
+  --     end
+  --
+  --     vim.cmd("verbose Dotenv" .. envFile)
+  --   end,
+  -- },
   {
     "chrisgrieser/nvim-spider",
     lazy = true,
@@ -753,14 +753,14 @@ local plugins = {
       require("telescope").load_extension "frecency"
     end,
   },
-  {
-    "ChuufMaster/buffer-vacuum",
-    event = "VeryLazy",
-    opts = {
-      max_buffers = 5,
-      count_pinned_buffers = true,
-    },
-  },
+  -- {
+  --   "ChuufMaster/buffer-vacuum",
+  --   event = "VeryLazy",
+  --   opts = {
+  --     max_buffers = 5,
+  --     count_pinned_buffers = true,
+  --   },
+  -- },
   -- Lua
   {
     "folke/zen-mode.nvim",
@@ -787,6 +787,39 @@ local plugins = {
       plugins = {
         gitsigns = { enabled = true }, -- disables git signs
         tmux = { enabled = true }, -- disables the tmux statusline
+      },
+    },
+  },
+  ---@type LazySpec
+  {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    keys = {
+      -- 👇 in this section, choose your own keymappings!
+      {
+        "cd",
+        mode = { "n" },
+        "<cmd>Yazi<cr>",
+        desc = "Open yazi at the current file",
+      },
+      {
+        -- Open in the current working directory
+        "<leader>o",
+        "<cmd>Yazi cwd<cr>",
+        desc = "Open the file manager in nvim's working directory",
+      },
+      {
+        "<leader>a",
+        "<cmd>Yazi toggle<cr>",
+        desc = "Resume the last yazi session",
+      },
+    },
+    ---@type YaziConfig
+    opts = {
+      -- if you want to open yazi instead of netrw, see below for more info
+      open_for_directories = true,
+      keymaps = {
+        show_help = "<f1>",
       },
     },
   },
