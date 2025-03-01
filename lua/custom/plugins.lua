@@ -154,23 +154,11 @@ local plugins = {
   },
 
   {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = {
-      "nvim-telescope/telescope.nvim",
-      "nvim-lua/plenary.nvim",
-    },
-    lazy = false,
-  },
-
-  {
     "nvim-telescope/telescope.nvim",
     lazy = false,
     dependencies = {
-      "nvim-telescope/telescope-file-browser.nvim",
       "debugloop/telescope-undo.nvim",
-      "lpoto/telescope-docker.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
-      "debugloop/telescope-undo.nvim",
     },
     opts = overrides.telescope,
   },
