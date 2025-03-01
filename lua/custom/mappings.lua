@@ -216,6 +216,7 @@ M.telescope = {
     ["<leader>fo"] = { "<cmd> Telescope oldfiles <CR>", "Find oldfiles" },
     ["<leader>/"] = { "<cmd> Telescope current_buffer_fuzzy_find <CR>", "Find in current buffer" },
     ["<leader>fu"] = { "<cmd> Telescope undo <CR> ", "Find in undo tree" },
+    ["<leader>fl"] = { "<cmd> Telescope flutter commands <CR> ", "flutter command" },
 
     -- ["cd"] = { "<cmd> Telescope file_browser <CR>", "file browser in cwd" },
 
@@ -307,29 +308,42 @@ M.dap_python = {
   },
 }
 
-vim.keymap.set({ "o", "x" }, "as", '<cmd>lua require("various-textobjs").subword("outer")<CR>')
-vim.keymap.set({ "o", "x" }, "is", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
 vim.keymap.set({ "o", "x" }, "ac", '<cmd>lua require("various-textobjs").cssColor("outer")<CR>')
 vim.keymap.set({ "o", "x" }, "ic", '<cmd>lua require("various-textobjs").cssColor("inner")<CR>')
-vim.keymap.set({ "o", "x" }, "aN", '<cmd>lua require("various-textobjs").number("outer")<CR>')
-vim.keymap.set({ "o", "x" }, "iN", '<cmd>lua require("various-textobjs").number("inner")<CR>')
+vim.keymap.set({ "o", "x" }, "an", '<cmd>lua require("various-textobjs").number("outer")<CR>')
+vim.keymap.set({ "o", "x" }, "in", '<cmd>lua require("various-textobjs").number("inner")<CR>')
 vim.keymap.set({ "o", "x" }, "aa", '<cmd>lua require("various-textobjs").indentation("outer", "outer")<CR>')
+vim.keymap.set({ "o", "x" }, "ii", '<cmd>lua require("various-textobjs").indentation("inner", "inner")<CR>')
+vim.keymap.set({ "o", "x" }, "iv", '<cmd>lua require("various-textobjs").value("inner")<CR>')
+vim.keymap.set({ "o", "x" }, "av", '<cmd>lua require("various-textobjs").value("outer")<CR>')
+vim.keymap.set({ "o", "x" }, "ik", '<cmd>lua require("various-textobjs").key("inner")<CR>')
+vim.keymap.set({ "o", "x" }, "ak", '<cmd>lua require("various-textobjs").key("outer")<CR>')
 
 vim.keymap.set({ "o", "x" }, "o", "iw")
-vim.keymap.set({ "o", "x" }, "(", "i(")
-vim.keymap.set({ "o", "x" }, "[", "i[")
-vim.keymap.set({ "x" }, "/", "o")
+vim.keymap.set({ "x" }, "m", "o")
+vim.keymap.set("v", "(", "<Plug>(nvim-surround-visual)" .. "(")
+vim.keymap.set("v", "{", "<Plug>(nvim-surround-visual)" .. "{")
+vim.keymap.set("v", "[", "<Plug>(nvim-surround-visual)" .. "[")
+vim.keymap.set("v", '"', "<Plug>(nvim-surround-visual)" .. '"')
 vim.keymap.set({ "o", "x" }, "O", '<cmd>lua require("various-textobjs").subword("inner")<CR>')
 vim.keymap.set({ "o", "x" }, "q", '<cmd>lua require("various-textobjs").toNextQuotationMark()<CR>')
+vim.keymap.set({ "o", "x" }, "]", '<cmd>lua require("various-textobjs").toNextClosingBracket()<CR>')
 vim.keymap.set({ "o", "x" }, "'", '<cmd>lua require("various-textobjs").anyQuote("inner")<CR>')
+
+-- vim.keymap.set("n", "<leader>cj", function()
+--   require("tiny-code-action").code_action()
+-- end, { noremap = true, silent = true })
 
 local keymap = vim.keymap.set
 
 keymap({ "n", "v" }, "<Leader>cb", "<Cmd>CBccbox<CR>", opts)
 keymap({ "n", "v" }, "<Leader>ct", "<Cmd>CBllline<CR>", opts)
-keymap("n", "<Leader>cb", "<Cmd>CBline<CR>", opts)
+keymap("n", "<Leader>cl", "<Cmd>CBline<CR>", opts)
 keymap({ "n", "v" }, "<Leader>cm", "<Cmd>CBllbox14<CR>", opts)
 keymap({ "n", "v" }, "<Leader>cd", "<Cmd>CBd<CR>", opts)
+
+vim.keymap.set("n", "<C-]>", "3<C-e>", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-[>", "3kzz", { noremap = true, silent = true })
 keymap({ "v" }, "r", "r")
 
 return M

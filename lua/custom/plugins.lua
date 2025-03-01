@@ -823,5 +823,149 @@ local plugins = {
       },
     },
   },
+  {
+    "nvim-flutter/flutter-tools.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim", -- optional for vim.ui.select
+    },
+    config = function()
+      require("flutter-tools").setup {
+        lsp = {
+          on_attach = function(client, bufnr)
+            -- Map 'gd' to LSP definition
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "Go to definition" })
+            -- Additional keybindings can be added here
+          end,
+        },
+      }
+    end,
+    -- config = true,
+  },
+
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = true,
+    version = false, -- set this if you want to always pull the latest change
+    opts = require "custom.configs.avante",
+    build = "make",
+    dependencies = {
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      -- {
+      --   -- support for image pasting
+      --   "HakonHarnes/img-clip.nvim",
+      --   event = "VeryLazy",
+      --   opts = {
+      --     -- recommended settings
+      --     default = {
+      --       embed_image_as_base64 = false,
+      --       prompt_for_file_name = false,
+      --       drag_and_drop = {
+      --         insert_mode = true,
+      --       },
+      --       -- required for Windows users
+      --       use_absolute_path = true,
+      --     },
+      --   },
+      -- },
+      {
+        -- Make sure to set this up properly if you have lazy=true
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+    keys = function(_, keys)
+      local opts =
+        require("lazy.core.plugin").values(require("lazy.core.config").spec.plugins["avante.nvim"], "opts", false)
+
+      local mappings = {
+        {
+          opts.mappings.ask,
+          function()
+            require("avante.api").ask()
+          end,
+          desc = "avante AI: ask",
+          mode = { "n", "v" },
+        },
+        {
+          opts.mappings.clear,
+          function()
+            require("avante.api").clear()
+          end,
+          desc = "avante AI: clear",
+          mode = { "n", "v" },
+        },
+        {
+          opts.mappings.refresh,
+          function()
+            require("avante.api").refresh()
+          end,
+          desc = "avante AI: refresh",
+          mode = "v",
+        },
+        {
+          opts.mappings.edit,
+          function()
+            require("avante.api").edit()
+          end,
+          desc = "avante AI: edit",
+          mode = { "n", "v" },
+        },
+      }
+      mappings = vim.tbl_filter(function(m)
+        return m[1] and #m[1] > 0
+      end, mappings)
+      return vim.list_extend(mappings, keys)
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    config = function()
+      require("nvim-treesitter.configs").setup {
+        textobjects = {
+          move = {
+            enable = true,
+            set_jumps = true, -- whether to set jumps in the jumplist
+            goto_next_start = {
+              ["<Down>"] = { query = "@function.outer", desc = "Next method/function def start" },
+            },
+            goto_previous_start = {
+              ["<Up>"] = { query = "@function.outer", desc = "Prev method/function def start" },
+            },
+          },
+          select = {
+            enable = true,
+
+            -- Automatically jump forward to textobj, similar to targets.vim
+            lookahead = true,
+
+            keymaps = {
+              -- You can use the capture groups defined in textobjects.scm
+              ["f"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              -- You can optionally set descriptions to the mappings (used in the desc parameter of
+              -- nvim_buf_set_keymap) which plugins like which-key display
+              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+              -- You can also use captures from other query groups like `locals.scm`
+              ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
+            },
+            include_surrounding_whitespace = false,
+          },
+        },
+      }
+    end,
+  },
 }
 return plugins
