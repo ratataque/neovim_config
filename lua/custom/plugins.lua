@@ -99,6 +99,7 @@ local plugins = {
           yml = { "prettier" },
           c = { "clang-format" },
           go = { "gofmt" },
+          http = { "kulala" },
           [""] = { "trim_whitespace" },
         },
         format_on_save = {
@@ -109,6 +110,11 @@ local plugins = {
         formatters = {
           ["pretty-php"] = {
             prepend_args = { "--tab=2" },
+          },
+          kulala = {
+            command = "kulala-fmt",
+            args = { "format", "$FILENAME" },
+            stdin = false,
           },
         },
       }
@@ -797,7 +803,7 @@ local plugins = {
         desc = "Open the file manager in nvim's working directory",
       },
       {
-        "<leader>a",
+        "<leader>y",
         "<cmd>Yazi toggle<cr>",
         desc = "Resume the last yazi session",
       },
@@ -954,6 +960,17 @@ local plugins = {
         },
       }
     end,
+  },
+  {
+    "rest-nvim/rest.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      opts = function(_, opts)
+        opts.ensure_installed = opts.ensure_installed or {}
+        table.insert(opts.ensure_installed, "http")
+      end,
+    },
   },
 }
 return plugins
