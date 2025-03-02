@@ -20,6 +20,9 @@ M.text = {
   },
 
   n = {
+    ["<leader>e"] = { "<cmd> AvanteToggle <CR>", "avante toggle" },
+    ["<leader>ao"] = { "<cmd> AvanteClear <CR>", "avante clear" },
+
     ["<C-Up>"] = { "<cmd> :m-2<CR>", " Move up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", " Move down" },
     ["<C-w>v"] = { "<C-w>v<left> <cmd> lua require('nvchad.tabufline').tabuflineNext() <CR>" },
@@ -41,6 +44,8 @@ M.text = {
   },
 
   v = {
+    ["<leader>e"] = { "<cmd> AvanteAsk <CR>", "avante ask" },
+
     ["<leader>p"] = { "p", "paste what you overrode with paste" },
 
     ["<leader>l"] = { "zf", " fold" },
