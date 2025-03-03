@@ -23,6 +23,15 @@ M.text = {
     ["<leader>e"] = { "<cmd> AvanteToggle <CR>", "avante toggle" },
     ["<leader>ao"] = { "<cmd> AvanteClear <CR>", "avante clear" },
 
+    ["<Down>"] = {
+      "<cmd>lua require('nvim-treesitter.textobjects.move').goto_next_start('@function.outer')<CR>",
+      "move to next function",
+    },
+    ["<Up>"] = {
+      "<cmd>lua require('nvim-treesitter.textobjects.move').goto_previous_start('@function.outer')<CR>",
+      "move to next function",
+    },
+
     ["<C-Up>"] = { "<cmd> :m-2<CR>", " Move up" },
     ["<C-Down>"] = { "<cmd> :m+<CR>", " Move down" },
     ["<C-w>v"] = { "<C-w>v<left> <cmd> lua require('nvchad.tabufline').tabuflineNext() <CR>" },

@@ -44,17 +44,44 @@ return {
     },
   },
   -- provider = "deepseek",
-  provider = "claude",
-  claude = {
-    endpoint = "https://api.anthropic.com",
-    model = "claude-3-7-sonnet-20250219",
-  },
+  provider = "claude_haiku",
   vendors = {
-    deepseek = {
-      __inherited_from = "openai",
-      api_key_name = "DEEPSEEK_API_KEY",
-      endpoint = "https://api.deepseek.com",
-      model = "deepseek-coder",
+    -- deepseek = {
+    --   __inherited_from = "openai",
+    --   api_key_name = "DEEPSEEK_API_KEY",
+    --   endpoint = "https://api.deepseek.com",
+    --   model = "deepseek-coder",
+    -- },
+    ["claude_37_tools_think"] = {
+      provider = "anthropic",
+      endpoint = "https://api.anthropic.com",
+      model = "claude-3-7-sonnet-20250219",
+      thinking = {
+        type = "enable",
+        budget_tokens = 2048,
+      },
+      temperature = 1,
+    },
+    ["claude_37"] = {
+      provider = "anthropic",
+      endpoint = "https://api.anthropic.com",
+      model = "claude-3-7-sonnet-20250219",
+      thinking = {
+        type = "disable",
+      },
+      disable_tools = true,
+    },
+    ["claude_haiku_tools"] = {
+      provider = "anthropic",
+      endpoint = "https://api.anthropic.com",
+      model = "claude-3-5-haiku-latest",
+      disable_tools = false,
+    },
+    ["claude_haiku"] = {
+      provider = "anthropic",
+      endpoint = "https://api.anthropic.com",
+      model = "claude-3-5-haiku-latest",
+      disable_tools = true,
     },
   },
 }

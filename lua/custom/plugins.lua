@@ -924,19 +924,19 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    lazy = false,
+    -- lazy = false,
     config = function()
       require("nvim-treesitter.configs").setup {
         textobjects = {
           move = {
             enable = true,
             set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-              ["<Down>"] = { query = "@function.outer", desc = "Next method/function def start" },
-            },
-            goto_previous_start = {
-              ["<Up>"] = { query = "@function.outer", desc = "Prev method/function def start" },
-            },
+            -- goto_next_start = {
+            --   ["<Down>"] = { query = "@function.outer", desc = "Next method/function def start" },
+            -- },
+            -- goto_previous_start = {
+            --   ["<Up>"] = { query = "@function.outer", desc = "Prev method/function def start" },
+            -- },
           },
           select = {
             enable = true,
