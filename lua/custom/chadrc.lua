@@ -126,12 +126,12 @@ vim.api.nvim_create_autocmd({ "BufModifiedSet", "BufReadPost", "BufNewFile", "Bu
   end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "dbout",
-  callback = function()
-    vim.cmd [[ setlocal nofoldenable ]]
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "dbout",
+--   callback = function()
+--     vim.cmd [[ setlocal nofoldenable ]]
+--   end,
+-- })
 
 vim.opt.showtabline = 0 -- Completely disables tabline
 
