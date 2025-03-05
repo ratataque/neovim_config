@@ -79,19 +79,19 @@ M.tabufline = {
 
   n = {
     -- cycle through buffers
-    ["<tab>"] = {
-      function()
-        require("nvchad.tabufline").tabuflineNext()
-      end,
-      "Goto next buffer",
-    },
-
-    ["<S-tab>"] = {
-      function()
-        require("nvchad.tabufline").tabuflinePrev()
-      end,
-      "Goto prev buffer",
-    },
+    -- ["<tab>"] = {
+    --   function()
+    --     require("nvchad.tabufline").tabuflineNext()
+    --   end,
+    --   "Goto next buffer",
+    -- },
+    --
+    -- ["<S-tab>"] = {
+    --   function()
+    --     require("nvchad.tabufline").tabuflinePrev()
+    --   end,
+    --   "Goto prev buffer",
+    -- },
 
     -- close buffer + hide terminal buffer
     ["<leader>x"] = {
@@ -200,19 +200,19 @@ M.lspconfig = {
       "Floating diagnostic",
     },
 
-    ["[d"] = {
-      function()
-        vim.diagnostic.goto_prev { float = { border = "rounded" } }
-      end,
-      "Goto prev",
-    },
-
-    ["]d"] = {
-      function()
-        vim.diagnostic.goto_next { float = { border = "rounded" } }
-      end,
-      "Goto next",
-    },
+    -- ["[d"] = {
+    --   function()
+    --     vim.diagnostic.goto_prev { float = { border = "rounded" } }
+    --   end,
+    --   "Goto prev",
+    -- },
+    --
+    -- ["]d"] = {
+    --   function()
+    --     vim.diagnostic.goto_next { float = { border = "rounded" } }
+    --   end,
+    --   "Goto next",
+    -- },
 
     ["<leader>q"] = {
       function()
@@ -403,33 +403,33 @@ M.gitsigns = {
 
   n = {
     -- Navigation through hunks
-    ["]c"] = {
-      function()
-        if vim.wo.diff then
-          return "]c"
-        end
-        vim.schedule(function()
-          require("gitsigns").next_hunk()
-        end)
-        return "<Ignore>"
-      end,
-      "Jump to next hunk",
-      opts = { expr = true },
-    },
-
-    ["[c"] = {
-      function()
-        if vim.wo.diff then
-          return "[c"
-        end
-        vim.schedule(function()
-          require("gitsigns").prev_hunk()
-        end)
-        return "<Ignore>"
-      end,
-      "Jump to prev hunk",
-      opts = { expr = true },
-    },
+    -- ["]c"] = {
+    --   function()
+    --     if vim.wo.diff then
+    --       return "]c"
+    --     end
+    --     vim.schedule(function()
+    --       require("gitsigns").next_hunk()
+    --     end)
+    --     return "<Ignore>"
+    --   end,
+    --   "Jump to next hunk",
+    --   opts = { expr = true },
+    -- },
+    --
+    -- ["[c"] = {
+    --   function()
+    --     if vim.wo.diff then
+    --       return "[c"
+    --     end
+    --     vim.schedule(function()
+    --       require("gitsigns").prev_hunk()
+    --     end)
+    --     return "<Ignore>"
+    --   end,
+    --   "Jump to prev hunk",
+    --   opts = { expr = true },
+    -- },
 
     -- Actions
     ["<leader>rh"] = {
