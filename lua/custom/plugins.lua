@@ -165,6 +165,7 @@ local plugins = {
     dependencies = {
       "debugloop/telescope-undo.nvim",
       "nvim-telescope/telescope-fzf-native.nvim",
+      "jonarrien/telescope-cmdline.nvim",
     },
     opts = overrides.telescope,
   },

@@ -27,6 +27,9 @@ M.treesitter = {
   -- autotag = {
   --   enable = true,
   -- },
+  fold = {
+    enable = true,
+  },
 }
 
 M.harpoon = {}
@@ -101,6 +104,7 @@ M.telescope = {
     "notify",
     "noice",
     "flutter",
+    "cmdline",
   },
   extensions = {
     fzf = {

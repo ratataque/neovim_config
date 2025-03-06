@@ -47,10 +47,38 @@ end
 local bg = vim.api.nvim_get_hl(0, { name = "StatusLine" }).bg
 local hl = vim.api.nvim_get_hl(0, { name = "Folded" })
 hl.bg = bg
-vim.api.nvim_set_hl(0, "Folded", hl)
 
+vim.api.nvim_set_hl(0, "Folded", hl)
 vim.opt.foldtext = [[luaeval('HighlightedFoldtext')()]]
 
+-- In init.lua
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- local elixir_query = [[
+--   (function) @fold
+--   (anonymous_function) @fold
+--   (do_block) @fold
+--   (case) @fold
+--   (with) @fold
+-- ]]
+--
+-- vim.treesitter.query.set("elixir", "folds", elixir_query)
+
+vim.opt.foldlevelstart = 0 -- Start with all folds closed
+vim.opt.foldlevel = 1 -- Keep folds closed
+
+local augroup = vim.api.nvim_create_augroup("AutoFoldFunctions", { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = augroup,
+  pattern = "*",
+  callback = function()
+    vim.cmd "silent! %fold"
+    -- vim.cmd "foldo!" -- Close all folds
+  end,
+})
+
+---------------------------------------- Neovide
 if g.neovide then
   g.neovide_transparency = 0.8
   -- vim.g.neovide_transparency = 0.0

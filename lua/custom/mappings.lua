@@ -5,8 +5,10 @@ M.disabled = {
   ["z"] = "",
   ["<C-u>"] = "",
   ["<leader>n"] = "",
-  ["<tab>"] = "",
   ["<leader>v"] = "",
+  ["<tab>"] = "",
+  ["["] = "",
+  ["]"] = "",
 }
 
 M.text = {
@@ -40,10 +42,11 @@ M.text = {
     -- ["k"] = { ":normal k (v:count > 1 ? m' . v:count : '') . 'k'" },
     ["<leader>l"] = { "zf", " fold" },
     ["<leader>k"] = { "za", "toggle fold" },
-    -- ["<leader>l"] = { "zR", "open all fold" },
-    ["<leader>L"] = { "zX", "close all fold" },
-    ["[j"] = { "zj", "jump to next closed fold" },
-    ["[k"] = { "zk", "jump to previous closed fold" },
+    ["<leader>K"] = { "zR", "open all fold" },
+    ["<leader>L"] = { "zM", "close all fold" },
+    ["<leader>h"] = { "zMzv", "close all fold but the current one" },
+    -- ["["] = { "zj", "jump to next closed fold", { noremap = true, silent = true, nowait = true } },
+    -- ["]"] = { "zk", "jump to previous closed fold", { noremap = true, silent = true, nowait = true } },
 
     ["<leader>mp"] = { "<cmd> MarkdownPreviewToggle <CR>", "toggle markdown preview" },
 
@@ -87,6 +90,7 @@ M.general = {
   },
 
   n = {
+    [":"] = { ":Telescope cmdline <CR>", "fzf commande" },
     ["<leader>z"] = { ":lua require('zen-mode').toggle()<CR>", "Gen doc", opts = opts },
 
     ["<leader>ro"] = { ":Rooter<CR>", "rooter" },
@@ -359,5 +363,8 @@ keymap({ "n", "v" }, "<Leader>cd", "<Cmd>CBd<CR>", opts)
 vim.keymap.set("n", "<C-]>", "3<C-e>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-[>", "3kzz", { noremap = true, silent = true })
 keymap({ "v" }, "r", "r")
+
+vim.keymap.set("n", "[", "zj", { noremap = true, nowait = true })
+vim.keymap.set("n", "]", "zk", { noremap = true, nowait = true })
 
 return M
