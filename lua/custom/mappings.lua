@@ -44,7 +44,7 @@ M.text = {
     ["<leader>k"] = { "za", "toggle fold" },
     ["<leader>K"] = { "zR", "open all fold" },
     ["<leader>L"] = { "zM", "close all fold" },
-    ["<leader>h"] = { "zMzv", "close all fold but the current one" },
+    ["<leader>h"] = { "zMzvzz", "close all fold but the current one" },
     -- ["["] = { "zj", "jump to next closed fold", { noremap = true, silent = true, nowait = true } },
     -- ["]"] = { "zk", "jump to previous closed fold", { noremap = true, silent = true, nowait = true } },
 

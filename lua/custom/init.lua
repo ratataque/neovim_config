@@ -53,8 +53,8 @@ vim.opt.foldtext = [[luaeval('HighlightedFoldtext')()]]
 
 -- In init.lua
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
--- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 vim.opt.foldlevelstart = 0 -- Start with all folds closed
 vim.opt.foldlevel = 0 -- Keep folds closed
@@ -62,9 +62,9 @@ vim.opt.foldlevel = 0 -- Keep folds closed
 -- Define specific overrides
 local fold_overrides = {
   -- lua = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
-  -- javascript = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
-  typescript = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
-  -- python = { method = "indent", level = 2 },
+  typescript = { method = "expr", expr = "v:lua.vim.treesitter.foldexpr()", level = 0 },
+  elixir = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
+  python = { method = "indent", level = 2 },
 }
 
 -- Create a single autocmd that applies the overrides
