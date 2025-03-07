@@ -54,29 +54,47 @@ vim.opt.foldtext = [[luaeval('HighlightedFoldtext')()]]
 -- In init.lua
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
--- local elixir_query = [[
---   (function) @fold
---   (anonymous_function) @fold
---   (do_block) @fold
---   (case) @fold
---   (with) @fold
--- ]]
---
--- vim.treesitter.query.set("elixir", "folds", elixir_query)
+-- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
 vim.opt.foldlevelstart = 0 -- Start with all folds closed
-vim.opt.foldlevel = 1 -- Keep folds closed
+vim.opt.foldlevel = 0 -- Keep folds closed
 
-local augroup = vim.api.nvim_create_augroup("AutoFoldFunctions", { clear = true })
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = augroup,
-  pattern = "*",
+-- Define specific overrides
+local fold_overrides = {
+  -- lua = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
+  -- javascript = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
+  typescript = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
+  -- python = { method = "indent", level = 2 },
+}
+
+-- Create a single autocmd that applies the overrides
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = vim.tbl_keys(fold_overrides),
   callback = function()
-    vim.cmd "silent! %fold"
-    -- vim.cmd "foldo!" -- Close all folds
+    local ft = vim.bo.filetype
+    local settings = fold_overrides[ft]
+
+    if settings.method then
+      vim.opt_local.foldmethod = settings.method
+    end
+    if settings.expr then
+      vim.opt_local.foldexpr = settings.expr
+    end
+    if settings.level then
+      vim.opt_local.foldlevelstart = settings.level
+    end
   end,
 })
+
+-- local augroup = vim.api.nvim_create_augroup("AutoFoldFunctions", { clear = true })
+-- vim.api.nvim_create_autocmd("BufEnter", {
+--   group = augroup,
+--   pattern = "*",
+--   callback = function()
+--     vim.cmd "silent! %fold"
+--     -- vim.cmd "foldo!" -- Close all folds
+--   end,
+-- })
 
 ---------------------------------------- Neovide
 if g.neovide then
