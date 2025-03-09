@@ -25,6 +25,8 @@ M.text = {
     ["<leader>e"] = { "<cmd> AvanteToggle <CR>", "avante toggle" },
     ["<leader>ao"] = { "<cmd> AvanteClear <CR>", "avante clear" },
 
+    ["<leader>rh"] = { "<cmd> Rest run <CR>", "run http on cursor" },
+
     ["<Down>"] = {
       "<cmd>lua require('nvim-treesitter.textobjects.move').goto_next_start('@function.outer')<CR>",
       "move to next function",
