@@ -65,6 +65,20 @@ local fold_overrides = {
   typescript = { method = "expr", expr = "v:lua.vim.treesitter.foldexpr()", level = 0 },
   elixir = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
   python = { method = "indent", level = 2 },
+  -- avante = { method = "expr", level = 99 },
+}
+local folding_blacklist = {
+  "NvimTree",
+  "aerial",
+  "dashboard",
+  "help",
+  "terminal",
+  "Trouble",
+  "TelescopePrompt",
+  "mason",
+  "lazy",
+  "Avante",
+  "dbui",
 }
 
 -- Create a single autocmd that applies the overrides
@@ -83,6 +97,24 @@ vim.api.nvim_create_autocmd("FileType", {
     if settings.level then
       vim.opt_local.foldlevelstart = settings.level
     end
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  callback = function()
+    local bufname = vim.fn.bufname()
+    local filetype = vim.bo.filetype
+
+    for _, pattern in ipairs(folding_blacklist) do
+      if bufname:match(pattern) or filetype == pattern then
+        -- Disable folding for this buffer
+        vim.opt_local.foldenable = false
+        return
+      end
+    end
+
+    -- Enable folding for non-blacklisted buffers
+    vim.opt_local.foldenable = true
   end,
 })
 
