@@ -45,6 +45,7 @@ return {
   },
   -- provider = "deepseek",
   provider = "claude",
+  mode = "legacy",
   claude = {
     endpoint = "https://api.anthropic.com",
     model = "claude-3-5-haiku-latest",
@@ -59,17 +60,19 @@ return {
     -- },
     ["claude_37_tools_think"] = {
       __inherited_from = "claude",
-      model = "claude-3-7-sonnet-20250219",
+      model = "claude-3-7-sonnet-latest",
+      display_name = "Claude 3.7 (Sonnet) with tools and thinking",
       thinking = {
         type = "enabled",
         budget_tokens = 2048,
       },
-      disable_tools = false,
+      disable_tools = true,
       temperature = 1,
     },
     ["claude_37"] = {
       __inherited_from = "claude",
-      model = "claude-3-7-sonnet-20250219",
+      model = "claude-3-7-sonnet-latest",
+      display_name = "Claude 3.7 (Sonnet)",
       thinking = {
         type = "disabled",
       },
@@ -78,11 +81,13 @@ return {
     ["claude_haiku_tools"] = {
       __inherited_from = "claude",
       model = "claude-3-5-haiku-latest",
+      display_name = "Claude 3.5 (Haiku) with tools",
       disable_tools = false,
     },
     ["claude_haiku"] = {
       __inherited_from = "claude",
       model = "claude-3-5-haiku-latest",
+      display_name = "Claude 3.5 (Haiku)",
       disable_tools = true,
     },
   },

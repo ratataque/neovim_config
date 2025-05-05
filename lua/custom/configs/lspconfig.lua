@@ -102,8 +102,30 @@ lspconfig.volar.setup {
 }
 
 lspconfig.gopls.setup {
-  on_attach = on_attach,
+  on_attach = function(client, bufnr)
+    -- Default on_attach
+    if on_attach then
+      on_attach(client, bufnr)
+    end
+
+    -- Additional setup for golangci-lint
+    require("lspconfig.configs").golangcilsp = {
+      default_config = {
+        cmd = { "golangci-lint", "run", "--out-format=json" },
+        root_dir = lspconfig.util.root_pattern(".git", "go.mod"),
+        filetypes = { "go" },
+        single_file_support = true,
+      },
+    }
+
+    -- -- Attach golangci-lint as an additional linter
+    -- lspconfig["golangcilsp"].setup {
+    --   on_attach = on_attach,
+    --   capabilities = capabilities,
+    -- }
+  end,
   capabilities = capabilities,
+  filetypes = { "go" },
   root_dir = function()
     return vim.loop.cwd()
   end,

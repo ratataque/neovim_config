@@ -255,30 +255,10 @@ M.telescope = {
 
 M.session = {
   n = {
-    ["<leader>sl"] = {
-      function()
-        require("nvim-possession").list()
-      end,
-      " List session",
-    },
-    ["<leader>sn"] = {
-      function()
-        require("nvim-possession").new()
-      end,
-      " New session",
-    },
-    ["<leader>su"] = {
-      function()
-        require("nvim-possession").update()
-      end,
-      " Update session",
-    },
-    ["<leader>sd"] = {
-      function()
-        require("nvim-possession").delete()
-      end,
-      " Delete session",
-    },
+
+    ["<leader>sl"] = { "<CMD>SessionSearch<CR>", " List session" },
+    ["<leader>sn"] = { "<CMD>SessionSave<CR>", " New session" },
+    ["<leader>sd"] = { "<CMD>SessionDelete<CR>", " Delete session" },
   },
 }
 

@@ -65,6 +65,7 @@ local fold_overrides = {
   typescript = { method = "expr", expr = "v:lua.vim.treesitter.foldexpr()", level = 0 },
   elixir = { method = "expr", expr = "nvim_treesitter#foldexpr()", level = 1 },
   python = { method = "indent", level = 2 },
+  dart = { method = "manual", level = 99 },
   -- avante = { method = "expr", level = 99 },
 }
 local folding_blacklist = {

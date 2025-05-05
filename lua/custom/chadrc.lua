@@ -61,12 +61,11 @@ M.ui = {
         end
         -- Load info for possession
         local function get_session()
-          -- local session = require("nvim-possession").status()
-          local session = require("nvim-possession").status()
-          if session ~= nil then
-            return "󰐃 "
+          local session = require("auto-session.lib").current_session_name(true)
+          if session ~= "" then
+            return "%#SessionHl#󰐃 " .. session .. " "
           else
-            return "󰐄 "
+            return "%#SessionHl#󰐄 "
           end
         end
 

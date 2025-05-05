@@ -1,13 +1,17 @@
 local overrides = require "custom.configs.overrides"
 
 local plugins = {
-  -- {
-  --   "jose-elias-alvarez/null-ls.nvim",
-  --   ft = { "python" },
-  --   opts = function()
-  --     return require "custom.configs.null-ls"
-  --   end,
-  -- },
+  {
+    "rmagatti/auto-session",
+    lazy = false,
+
+    opts = {
+      suppressed_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
+      -- log_level = 'debug',
+      auto_create = false,
+      root_dir = os.getenv "NVIM_SESSIONS",
+    },
+  },
   {
     "williamboman/mason.nvim",
     opts = {
@@ -125,25 +129,25 @@ local plugins = {
     lazy = false,
     opts = overrides.harpoon,
   },
-  {
-    "gennaro-tedesco/nvim-possession",
-    lazy = false,
-    dependencies = {
-      "ibhagwan/fzf-lua",
-    },
-    config = function()
-      require("nvim-possession").setup {
-        autoload = true,
-        sessions = {
-          sessions_icon = "",
-          sessions_path = "/sessions/",
-        },
-        autoswitch = {
-          enable = true,
-        },
-      }
-    end,
-  },
+  -- {
+  --   "gennaro-tedesco/nvim-possession",
+  --   lazy = false,
+  --   dependencies = {
+  --     "ibhagwan/fzf-lua",
+  --   },
+  --   config = function()
+  --     require("nvim-possession").setup {
+  --       autoload = true,
+  --       sessions = {
+  --         sessions_icon = "",
+  --         sessions_path = "/sessions/",
+  --       },
+  --       autoswitch = {
+  --         enable = true,
+  --       },
+  --     }
+  --   end,
+  -- },
 
   {
     "nvim-treesitter/nvim-treesitter",
@@ -183,18 +187,6 @@ local plugins = {
     "AckslD/muren.nvim",
     config = true,
   },
-  -- {
-  --   "ratataque/project.nvim",
-  --   config = function()
-  --     require("project_nvim").setup {
-  --       -- your configuration comes here
-  --       -- or leave it empty to use the default settings
-  --       -- refer to the configuration section below
-  --       show_hidden = true,
-  --       ignore_gitignore = true,
-  --     }
-  --   end,
-  -- },
 
   {
     "windwp/nvim-ts-autotag",
@@ -238,24 +230,6 @@ local plugins = {
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
     },
-  },
-  {
-    "pwntester/octo.nvim",
-    lazy = false,
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      -- OR 'ibhagwan/fzf-lua',
-      "nvim-tree/nvim-web-devicons",
-    },
-    config = function()
-      require("octo").setup {
-        users = "assignable",
-        suppress_missing_scope = {
-          projects_v2 = true,
-        },
-      }
-    end,
   },
   {
     "notjedi/nvim-rooter.lua",
@@ -376,28 +350,6 @@ local plugins = {
       },
     },
   },
-  -- {
-  --   "christoomey/vim-tmux-navigator",
-  --   cmd = {
-  --     "TmuxNavigateLeft",
-  --     "TmuxNavigateDown",
-  --     "TmuxNavigateUp",
-  --     "TmuxNavigateRight",
-  --     "TmuxNavigatePrevious",
-  --   },
-  --   keys = {
-  --     { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-  --     { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-  --     { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-  --     { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
-  --     { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
-  --   },
-  -- },
-  -- {
-  --   "ggandor/leap.nvim",
-  --   lazy = false,
-  -- },
-  --
   {
     "folke/noice.nvim",
     event = "VeryLazy",
@@ -441,23 +393,6 @@ local plugins = {
   },
   {
     "sindrets/diffview.nvim",
-    lazy = false,
-  },
-  {
-    -- "m4xshen/hardtime.nvim",
-    -- event = "VeryLazy",
-    -- dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
-    -- opts = {
-    --   disabled_keys = {
-    --     ["<Up>"] = {},
-    --     ["<Left>"] = {},
-    --     ["<Right>"] = {},
-    --     ["<Down>"] = {},
-    --   },
-    -- },
-  },
-  {
-    "EmranMR/tree-sitter-blade",
     lazy = false,
   },
   -- {
