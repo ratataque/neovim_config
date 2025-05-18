@@ -42,6 +42,7 @@ s.general = {
 
     ["<C-_>"] = { "gcc", "Toggle comment", opts = { remap = true } },
     -- ["<leader>rw"] = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search current word" },
+    ["<leader>ca"] = { "<cmd>lua require('tiny-code-action').code_action() <CR>", "code action ui" },
   },
 
   v = {
@@ -60,8 +61,6 @@ s.general = {
   },
 
   x = {
-    ["o"] = { "iw", "replace word" },
-
     ["j"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', "Move down", opts = { expr = true } },
     ["k"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', "Move up", opts = { expr = true } },
     -- Don't copy the replaced text after pasting in visual mode
@@ -250,7 +249,6 @@ s.neogen = {
 }
 
 s.telescope = {
-
   n = {
     -- find
     ["<leader>fk"] = { "<cmd>Telescope keymaps<CR>", " Find keymaps" },
@@ -297,6 +295,8 @@ vim.keymap.set({ "o", "x" }, "O", '<cmd>lua require("various-textobjs").subword(
 vim.keymap.set({ "o", "x" }, "q", '<cmd>lua require("various-textobjs").toNextQuotationMark()<CR>')
 vim.keymap.set({ "o", "x" }, "]", '<cmd>lua require("various-textobjs").toNextClosingBracket()<CR>')
 vim.keymap.set({ "o", "x" }, "'", '<cmd>lua require("various-textobjs").anyQuote("inner")<CR>')
+
+vim.keymap.set({ "o", "x" }, "o", "iw")
 
 for _, section in pairs(s) do
   for mode, mode_map in pairs(section) do

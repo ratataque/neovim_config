@@ -9,18 +9,12 @@
 
 ## Install Instructions
 
-> Install requires Neovim 0.9+. Always review the code before installing a configuration.
+> Install requires Neovim 0.11+. Always review the code before installing a configuration.
 
 Clone the repository and install the plugins:
 
 ```sh
-git clone git@github.com:ratataque/neovim_config ~/.config/ratataque/neovim_config
-```
-
-Open Neovim with this config:
-
-```sh
-NVIM_APPNAME=ratataque/neovim_config/ nvim
+git clone git@github.com:ratataque/neovim_config ~/.config/nvim
 ```
 
 ## Plugins

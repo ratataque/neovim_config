@@ -16,9 +16,11 @@ M.base46 = {
     ["IncSearch"] = { fg = "#ffffff", bg = "#ff034f" },
     ["Substitute"] = { fg = "black", bg = "orange" },
     ["Search"] = { fg = "#1e1d2d", bg = "#abe9b3" },
-    --   ["NvimTreeNormal"] = { bg = "NONE"},
     ["Visual"] = { bg = "#214283" },
     -- ["@comment"] = { fg = "#717276" },
+
+    ["DiagnosticError"] = { fg = "#ff034f" },
+    ["DiagnosticInfo"] = { fg = "#7fff9c" },
 
     -- ["IndentBlanklineContextStart"] = { bg = "#515256" },
     -- ["IndentBlanklineContextStart"] = { bg = "#afffcf" },
