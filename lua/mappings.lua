@@ -129,6 +129,25 @@ s.session = {
   },
 }
 
+s.run = {
+  n = {
+    ["<leader>rr"] = { "<cmd>lua require('runner').run() <CR>", "run the current buffer" },
+  },
+}
+
+s.fold = {
+  n = {
+    ["<leader>l"] = { "zA", " fold" },
+    ["<leader>k"] = { "za", "toggle fold" },
+    ["<leader>K"] = { "zRzz", "open all fold" },
+    ["<leader>L"] = { "zMzz", "close all fold" },
+    ["<leader>h"] = { "zMzvzz", "close all fold but the current one" },
+
+    ["["] = { "zj", "next fold", opts = { nowait = true, noremap = true } },
+    ["]"] = { "zk", "prev fold", opts = { nowait = true, noremap = true } },
+  },
+}
+
 s.trouble = {
   n = {
     ["<leader>tt"] = { "<cmd>Trouble diagnostics toggle<cr>", "󰔫 Toggle warnings" },

@@ -93,8 +93,27 @@ M.ui = {
   statusline = {
     theme = "default",
     separator_style = "default",
-    order = { "mode", "filepath", "file", "%=", "lsp_msg", "%=", "lsp", "cwd" },
+    order = { "mode", "filepath", "file", "%=", "lsp_msg", "%=", "harpoon", "session", "lsp", "cwd" },
     modules = {
+      harpoon = function()
+        local Marked = require "harpoon.mark"
+        local filename = vim.api.nvim_buf_get_name(0)
+        local success, index = pcall(Marked.get_index_of, filename)
+        if success and index and index ~= nil then
+          return "%#HarpoonHl#󱡀 " .. index .. " "
+        else
+          return ""
+        end
+      end,
+
+      session = function()
+        local session = require("auto-session.lib").current_session_name(true)
+        if session ~= "" then
+          return "%#SessionHl#󰐃 " .. session .. " "
+        else
+          return "%#SessionHl#󰐄 "
+        end
+      end,
 
       filepath = function()
         local file_path = vim.fn.expand "%:."
