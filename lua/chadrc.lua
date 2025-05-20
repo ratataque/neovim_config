@@ -14,7 +14,7 @@ M.base46 = {
     ["LineNr"] = { fg = "#515256" },
     ["CursorLineNr"] = { fg = "vibrant_green" },
     ["IncSearch"] = { fg = "#ffffff", bg = "#ff034f" },
-    ["Substitute"] = { fg = "black", bg = "orange" },
+    ["Substitute"] = { fg = "black", bg = "#ea6817" },
     ["Search"] = { fg = "#1e1d2d", bg = "#abe9b3" },
     ["Visual"] = { bg = "#214283" },
     -- ["@comment"] = { fg = "#717276" },
@@ -52,21 +52,18 @@ vim.api.nvim_set_hl(0, "FileNameSeperatorLefttHl", { fg = "#2D3139", bg = "#2D31
 vim.api.nvim_set_hl(0, "FileNameSeperatorRightHl", { fg = "#2D3139", bg = "NONE" })
 vim.api.nvim_set_hl(0, "EncodingHl", { fg = "#69AED6", bg = "NONE" })
 
-vim.api.nvim_create_autocmd(
-  { "BufModifiedSet", "BufReadPost", "BufNewFile", "BufWinEnter", "TextChanged", "TextChangedI" },
-  {
-    pattern = "*",
-    callback = function()
-      local buf = vim.api.nvim_get_current_buf()
+vim.api.nvim_create_autocmd({ "BufModifiedSet", "BufReadPost", "BufNewFile", "BufWinEnter" }, {
+  pattern = "*",
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
 
-      if vim.bo[buf].modified then
-        vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#ff034f", bg = "#2D3139" })
-      else
-        vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#afffcf", bg = "#2D3139" })
-      end
-    end,
-  }
-)
+    if vim.bo[buf].modified then
+      vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#ff034f", bg = "#2D3139" })
+    else
+      vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#afffcf", bg = "#2D3139" })
+    end
+  end,
+})
 
 M.nvdash = {
   load_on_startup = true,

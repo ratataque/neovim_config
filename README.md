@@ -4,8 +4,7 @@
 <a href="https://dotfyle.com/ratataque/neovimconfig"><img src="https://dotfyle.com/ratataque/neovimconfig/badges/leaderkey?style=for-the-badge" /></a>
 <a href="https://dotfyle.com/ratataque/neovimconfig"><img src="https://dotfyle.com/ratataque/neovimconfig/badges/plugin-manager?style=for-the-badge" /></a>
 
-![preview 1](./.git_img/preview1.png)
-![preview 2](./.git_img/preview2.png)
+![preview 1](./assets/dashboard.png)
 
 ## Install Instructions
 
