@@ -53,7 +53,7 @@ vim.api.nvim_set_hl(0, "FileNameSeperatorRightHl", { fg = "#2D3139", bg = "NONE"
 vim.api.nvim_set_hl(0, "EncodingHl", { fg = "#69AED6", bg = "NONE" })
 
 vim.api.nvim_create_autocmd({ "BufModifiedSet", "BufReadPost", "BufNewFile", "BufWinEnter" }, {
-  pattern = "*",
+  pattern = "<buffer>",
   callback = function()
     local buf = vim.api.nvim_get_current_buf()
 

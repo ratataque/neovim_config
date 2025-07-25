@@ -15,6 +15,10 @@ return {
             ["<C-j>"] = "move_selection_next",
             ["<C-k>"] = "move_selection_previous",
             ["<esc>"] = "close",
+            ["<C-q>"] = function(prompt_bufnr)
+              require("telescope.actions").smart_send_to_qflist(prompt_bufnr)
+              require("telescope.actions").open_qflist(prompt_bufnr)
+            end,
           },
         },
       },

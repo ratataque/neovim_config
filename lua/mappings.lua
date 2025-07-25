@@ -43,6 +43,12 @@ s.general = {
     ["<C-_>"] = { "gcc", "Toggle comment", opts = { remap = true } },
     -- ["<leader>rw"] = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search current word" },
     ["<leader>ca"] = { "<cmd>lua require('tiny-code-action').code_action() <CR>", "code action ui" },
+
+    --   to have a better experience with tmux with no custom keyboard
+    --   ["<C-h>"] = { "<cmd> NvimTmuxNavigateLeft <CR>", "Navigate left", opts = { nowait = true, silent = true } },
+    --   ["<C-j>"] = { "<cmd> NvimTmuxNavigateDown <CR>", "Navigate down", opts = { nowait = true, silent = true } },
+    --   ["<C-k>"] = { "<cmd> NvimTmuxNavigateUp <CR>", "Navigate up", opts = { nowait = true, silent = true } },
+    --   ["<C-l>"] = { "<cmd> NvimTmuxNavigateRight <CR>", "Navigate right", opts = { nowait = true, silent = true } },
   },
 
   v = {

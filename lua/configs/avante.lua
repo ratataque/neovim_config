@@ -32,57 +32,31 @@ return {
   hints = {
     enabled = false,
   },
-  windows = {
-    edit = {
-      start_insert = true, -- Start insert mode when opening the edit window
-    },
-    ask = {
-      floating = false, -- Open the 'AvanteAsk' prompt in a floating window
-      start_insert = false, -- Start insert mode when opening the ask window
-      ---@type "ours" | "theirs"
-      focus_on_apply = "ours", -- which diff to focus after applying
-    },
-  },
   -- provider = "deepseek",
-  provider = "claude",
+  provider = "copilot-gpt41",
   mode = "legacy",
-  claude = {
-    endpoint = "https://api.anthropic.com",
-    model = "claude-3-5-haiku-latest",
-    disable_tools = true,
-  },
-  vendors = {
-    -- deepseek = {
-    --   __inherited_from = "openai",
-    --   api_key_name = "DEEPSEEK_API_KEY",
-    --   endpoint = "https://api.deepseek.com",
-    --   model = "deepseek-coder",
-    -- },
-    ["claude_37_tools_think"] = {
+  providers = {
+    ["claude_4_thinking"] = {
       __inherited_from = "claude",
-      model = "claude-3-7-sonnet-latest",
-      display_name = "Claude 3.7 (Sonnet) with tools and thinking",
-      thinking = {
-        type = "enabled",
-        budget_tokens = 2048,
+      model = "claude-sonnet-4-20250514",
+      display_name = "Claude 4 (Sonnet) with thinking",
+      pro = {
+        thinking = {
+          type = "enabled",
+          budget_tokens = 2048,
+        },
+        temperature = 1,
       },
       disable_tools = true,
-      temperature = 1,
     },
-    ["claude_37"] = {
+    ["claude_4"] = {
       __inherited_from = "claude",
-      model = "claude-3-7-sonnet-latest",
-      display_name = "Claude 3.7 (Sonnet)",
+      model = "claude-sonnet-4-20250514",
+      display_name = "Claude 4 (Sonnet)",
       thinking = {
         type = "disabled",
       },
       disable_tools = true,
-    },
-    ["claude_haiku_tools"] = {
-      __inherited_from = "claude",
-      model = "claude-3-5-haiku-latest",
-      display_name = "Claude 3.5 (Haiku) with tools",
-      disable_tools = false,
     },
     ["claude_haiku"] = {
       __inherited_from = "claude",
@@ -90,5 +64,54 @@ return {
       display_name = "Claude 3.5 (Haiku)",
       disable_tools = true,
     },
+    ["copilot-claude4"] = {
+      __inherited_from = "copilot",
+      model = "claude-sonnet-4",
+      display_name = "Copilot custom (Claude Sonnet 4)",
+      disable_tools = true,
+      pro = {
+        thinking = {
+          type = "disabled",
+        },
+      },
+    },
+    ["copilot-claude4-thinking"] = {
+      __inherited_from = "copilot",
+      model = "claude-4-sonnet",
+      display_name = "Copilot custom (Claude Sonnet 4 thinking)",
+      disable_tools = true,
+      pro = {
+        thinking = {
+          type = "enabled",
+        },
+      },
+    },
+    ["copilot-gpt41"] = {
+      __inherited_from = "copilot",
+      model = "gpt-4.1",
+      display_name = "Copilot custom (GPT-4.1)",
+      disable_tools = true,
+      pro = {
+        thinking = {
+          type = "disabled",
+        },
+      },
+    },
+    -- ["deepseek_coder_v2_lite_instruct_Q5_K_S"] = {
+    --   __inherited_from = "ollama",
+    --   display_name = "DeepSeek Coder V2 Lite Instruct GGUF:Q5_K_S",
+    --   model = "hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF:Q5_K_S",
+    --   disable_tools = true,
+    -- },
+    -- ["deepseek_coder_v2_lite_instruct_IQ4_XS"] = {
+    --   __inherited_from = "ollama",
+    --   display_name = "DeepSeek Coder V2 Lite Instruct GGUF:IQ4_XS",
+    --   model = "hf.co/bartowski/DeepSeek-Coder-V2-Lite-Instruct-GGUF:IQ4_XS",
+    --   disable_tools = true,
+    --   max_tokens = 512,
+    --   options = {
+    --     num_ctx = 0,
+    --   },
+    -- },
   },
 }

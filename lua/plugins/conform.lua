@@ -23,6 +23,7 @@ return {
         c = { "clang-format" },
         go = { "goimports-reviser" },
         http = { "kulala" },
+        rust = { "rustfmt" },
         [""] = { "trim_whitespace" },
       },
       format_on_save = {
