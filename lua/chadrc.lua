@@ -14,7 +14,7 @@ M.base46 = {
     ["LineNr"] = { fg = "#515256" },
     ["CursorLineNr"] = { fg = "vibrant_green" },
     ["IncSearch"] = { fg = "#ffffff", bg = "#ff034f" },
-    ["Substitute"] = { fg = "black", bg = "#ea6817" },
+    ["Substitute"] = { fg = "#ffffff", bg = "#995239" },
     ["Search"] = { fg = "#1e1d2d", bg = "#abe9b3" },
     ["Visual"] = { bg = "#214283" },
     -- ["@comment"] = { fg = "#717276" },

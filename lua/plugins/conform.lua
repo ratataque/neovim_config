@@ -24,6 +24,7 @@ return {
         go = { "goimports-reviser" },
         http = { "kulala" },
         rust = { "rustfmt" },
+        -- fish = { "prettier" },
         [""] = { "trim_whitespace" },
       },
       format_on_save = {

@@ -129,7 +129,7 @@ s.git = {
 s.session = {
   n = {
     ["<leader>sl"] = { "<CMD>SessionSearch<CR>", " List session" },
-    ["<leader>sn"] = { "<CMD>SessionSave<CR>", " New session" },
+    ["<leader>sn"] = { "<CMD>AutoSession save<CR>", " New session" },
     ["<leader>sd"] = { "<CMD>SessionDelete<CR>", " Delete session" },
   },
 }
@@ -284,6 +284,15 @@ s.telescope = {
 
     -- theme switcher
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "Nvchad themes" },
+  },
+}
+
+s.leetcode = {
+  n = {
+    ["<leader>ls"] = { "<cmd> Leet submit <CR>", "Leetcode submit" },
+    ["<leader>lr"] = { "<cmd> Leet run <CR>", "Leetcode test" },
+    ["<leader>ll"] = { "<cmd> Leet<CR>", "Leetcode" },
+    ["<leader>li"] = { "<cmd> Leet info<CR>", "Leetcode info" },
   },
 }
 
