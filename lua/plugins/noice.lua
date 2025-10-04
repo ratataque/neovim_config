@@ -5,7 +5,7 @@ return {
     opts = {
       lsp = {
         -- hover = { enabled = false }, -- <-- HERE!
-        -- signature = { enabled = false }, -- <-- HERE!
+        signature = { enabled = false }, -- <-- HERE!
         ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
         ["vim.lsp.util.stylize_markdown"] = true,
       },
