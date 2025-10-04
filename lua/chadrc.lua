@@ -46,17 +46,31 @@ M.base46 = {
 vim.api.nvim_set_hl(0, "HarpoonHl", { fg = "#CF6377", bg = "NONE" })
 vim.api.nvim_set_hl(0, "SessionHl", { fg = "#89B35C", bg = "NONE" })
 vim.api.nvim_set_hl(0, "FilepathHl", { fg = "#ABB2BF", bg = "#42464E" })
-vim.api.nvim_set_hl(0, "FileNameHl", { bg = "#4E565C" })
+vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#afffcf", bg = "#2D3139" })
 vim.api.nvim_set_hl(0, "FilepathSeperatorLefttHl", { fg = "#2D3139", bg = "#42464E" })
 vim.api.nvim_set_hl(0, "FilepathSeperatorRightHl", { fg = "#42464E", bg = "#2D3139" })
 vim.api.nvim_set_hl(0, "FileNameSeperatorLefttHl", { fg = "#2D3139", bg = "#2D3139" })
 vim.api.nvim_set_hl(0, "FileNameSeperatorRightHl", { fg = "#2D3139", bg = "NONE" })
 vim.api.nvim_set_hl(0, "EncodingHl", { fg = "#69AED6", bg = "NONE" })
 
-vim.api.nvim_create_autocmd({ "BufModifiedSet", "BufReadPost", "BufNewFile", "BufWinEnter", "BufEnter" }, {
+vim.api.nvim_create_autocmd({
+  "BufModifiedSet",
+  "BufReadPost",
+  "BufNewFile",
+  "BufWinEnter",
+  "BufEnter",
+  "TextChanged",
+  "TextChangedI",
+  "InsertLeave", -- Check when leaving insert mode
+}, {
   callback = function(args)
     local buf = args.buf
-    if vim.bo[buf].modified then
+
+    -- Check if buffer has actual unsaved changes
+    local modified = vim.bo[buf].modified
+    local has_changes = vim.fn.undotree().seq_cur > vim.fn.undotree().seq_last
+
+    if modified or has_changes then
       vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#ff034f", bg = "#2D3139" })
     else
       vim.api.nvim_set_hl(0, "FileNameHl", { fg = "#afffcf", bg = "#2D3139" })
