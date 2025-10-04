@@ -21,6 +21,7 @@ M.base46 = {
 
     ["DiagnosticError"] = { fg = "#ff034f" },
     ["DiagnosticInfo"] = { fg = "#7fff9c" },
+    ["LspSignatureActiveParameter"] = { fg = "#7fff9c" },
 
     -- ["IndentBlanklineContextStart"] = { bg = "#515256" },
     -- ["IndentBlanklineContextStart"] = { bg = "#afffcf" },
