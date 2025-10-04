@@ -8,12 +8,13 @@ local opts = { noremap = true, silent = true }
 s.original = {
   n = {
     ["<tab>"] = { "<C-i>", "tab" },
-    ["<C-i>"] = { "<C-i>", "return" },
+    ["<C-i>"] = { "", "return" },
   },
 }
 
 s.text = {
   i = {
+    ["<C-i>"] = { "", "return" },
     ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
     ["<C-e>"] = { "<End>", "End of line" },
 
@@ -43,6 +44,14 @@ s.general = {
     ["<C-_>"] = { "gcc", "Toggle comment", opts = { remap = true } },
     -- ["<leader>rw"] = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search current word" },
     ["<leader>ca"] = { "<cmd>lua require('tiny-code-action').code_action() <CR>", "code action ui" },
+
+    ["<leader>cb"] = { "<cmd>%bd|e#<CR>", "Close all buffers" },
+
+    -- ["<leader>u"] = { "<cmd> UndotreeToggle <CR>", "Undo tree" },
+
+    ["<leader>so"] = { "<cmd>so %<CR>", "Source current file" },
+
+    ["<leader><leader>"] = { "<cmd> Telescope resume <CR>", "Resume last telescope picker" },
 
     --   to have a better experience with tmux with no custom keyboard
     --   ["<C-h>"] = { "<cmd> NvimTmuxNavigateLeft <CR>", "Navigate left", opts = { nowait = true, silent = true } },
@@ -312,6 +321,8 @@ vim.keymap.set({ "o", "x" }, "]", '<cmd>lua require("various-textobjs").toNextCl
 vim.keymap.set({ "o", "x" }, "'", '<cmd>lua require("various-textobjs").anyQuote("inner")<CR>')
 
 vim.keymap.set({ "o", "x" }, "o", "iw")
+
+vim.keymap.set({ "v" }, "<leader>i", [[y<Esc>:+25,-25s/<C-r>+\V/]], { desc = "Substitute in visual selection" })
 
 for _, section in pairs(s) do
   for mode, mode_map in pairs(section) do
