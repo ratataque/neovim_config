@@ -14,7 +14,7 @@ s.original = {
 
 s.text = {
   i = {
-    ["<C-i>"] = { "", "return" },
+    ["<C-i>"] = { "<C-i>", "return" },
     ["<C-b>"] = { "<ESC>^i", "Beginning of line" },
     ["<C-e>"] = { "<End>", "End of line" },
 
@@ -302,6 +302,12 @@ s.leetcode = {
     ["<leader>lr"] = { "<cmd> Leet run <CR>", "Leetcode test" },
     ["<leader>ll"] = { "<cmd> Leet<CR>", "Leetcode" },
     ["<leader>li"] = { "<cmd> Leet info<CR>", "Leetcode info" },
+  },
+}
+
+s.undo_tree = {
+  n = {
+    ["<leader>u"] = { vim.cmd.UndotreeToggle, "Undo tree" },
   },
 }
 
