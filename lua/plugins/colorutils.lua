@@ -1,7 +1,8 @@
 return {
   {
     "max397574/colortils.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    cmd = { "Colortils" },
     opts = {},
   },
 }

@@ -7,7 +7,7 @@ local opts = { noremap = true, silent = true }
 
 s.original = {
   n = {
-    ["<tab>"] = { "<C-i>", "tab" },
+    -- ["<tab>"] = { "<C-i>", "tab" },
     ["<C-i>"] = { "", "return" },
   },
 }
@@ -308,6 +308,15 @@ s.leetcode = {
 s.undo_tree = {
   n = {
     ["<leader>u"] = { vim.cmd.UndotreeToggle, "Undo tree" },
+  },
+}
+
+s.quiqfix_list = {
+  n = {
+    ["<leader>q"] = { "<cmd> cc <CR>", "Open quickfix list" },
+    ["<tab>"] = { "<cmd> cnext <CR>", "Next quickfix item" },
+    ["<S-tab>"] = { "<cmd> cprev <CR>", "Prev quickfix item" },
+    ["<leader>o"] = { "<cmd> cprev <CR>", "remove quickfix item" },
   },
 }
 

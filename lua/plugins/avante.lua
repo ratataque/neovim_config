@@ -1,7 +1,8 @@
 return {
   {
     "yetone/avante.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    cmd = { "Avante", "AvanteToggle", "AvanteClear" },
     lazy = true,
     version = false, -- set this if you want to always pull the latest change
     opts = require "configs.avante",
