@@ -24,6 +24,7 @@ return {
         go = { "goimports-reviser" },
         http = { "kulala" },
         rust = { "rustfmt" },
+        terraform = { "terraform_fmt" },
         -- fish = { "prettier" },
         [""] = { "trim_whitespace" },
       },
