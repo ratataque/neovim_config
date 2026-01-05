@@ -5,6 +5,22 @@ require "nvchad.mappings"
 local s = {} -- sections definitions
 local opts = { noremap = true, silent = true }
 
+-- Disable default motions
+s.disable_defaults = {
+	n = {
+		["[m"] = { "<Nop>", "Disabled" },
+		["[]"] = { "<Nop>", "Disabled" },
+		["[["] = { "<Nop>", "Disabled" },
+		["]m"] = { "<Nop>", "Disabled" },
+		["][]"] = { "<Nop>", "Disabled" },
+		["]]"] = { "<Nop>", "Disabled" },
+		["[M"] = { "<Nop>", "Disabled" },
+		["]M"] = { "<Nop>", "Disabled" },
+		["]["] = { "<Nop>", "Disabled" },
+		["]{"] = { "<Nop>", "Disabled" },
+	},
+}
+
 s.original = {
 	n = {
 		-- ["<tab>"] = { "<C-i>", "tab" },
