@@ -116,6 +116,9 @@ s.avante = {
 		["<leader>e"] = { "<cmd> AvanteToggle <CR>", "avante toggle" },
 		["<leader>ao"] = { "<cmd> AvanteClear <CR>", "avante clear" },
 	},
+	v = {
+		["<leader>ae"] = { "<cmd> AvanteEdit <CR>", "avante ask visual" },
+	},
 }
 
 s.movement = {
@@ -143,11 +146,21 @@ s.git = {
 			end,
 			"  Blame line",
 		},
-		["<leader>gvd"] = { "<cmd> DiffviewOpen<CR>", "  Show git diff" },
-		["<leader>gvf"] = { "<cmd> DiffviewFileHistory %<CR>", "  Show file history" },
-		["<leader>gvp"] = { "<cmd> DiffviewOpen --cached<CR>", "  Show staged diffs" },
-		["<leader>gvr"] = { "<cmd> DiffviewRefresh<CR>", "  Refresh diff view" },
-		["<leader>gvc"] = { "<cmd> DiffviewClose<CR>", "  Close diff view" },
+		["<leader>gd"] = {
+			function()
+				if next(require("diffview.lib").views) == nil then
+					vim.cmd "DiffviewOpen"
+				else
+					vim.cmd "DiffviewClose"
+				end
+			end,
+			"Toggle Diffview",
+		},
+
+		["<leader>gf"] = { "<cmd> DiffviewFileHistory %<CR>", "  Show file history" },
+		["<leader>gp"] = { "<cmd> DiffviewOpen --cached<CR>", "  Show staged diffs" },
+		["<leader>gr"] = { "<cmd> DiffviewRefresh<CR>", "  Refresh diff view" },
+		-- ["<leader>gvc"] = { "<cmd> DiffviewClose<CR>", "  Close diff view" },
 	},
 }
 
@@ -290,7 +303,7 @@ s.telescope = {
 			"<cmd> Telescope find_files follow=true no_ignore=true hidden=true cwd=~/dotfiles_telescope/ depth=1<CR>",
 			"Find dotfiles",
 		},
-		["<leader>o"] = { "<cmd>FzfLua files cwd=~ <CR>", "Find all" },
+		-- ["<leader>o"] = { "<cmd>FzfLua files cwd=~ <CR>", "Find all" },
 		["<leader>fw"] = { "<cmd>Telescope live_grep <CR>", "Live grep" },
 		["<leader>b"] = { "<cmd>Telescope buffers <CR>", "Find buffers" },
 		["<leader>fh"] = { "<cmd>Telescope help_tags <CR>", "Help page" },
