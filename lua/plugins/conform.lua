@@ -22,7 +22,7 @@ return {
 				yml = { "prettier" },
 				c = { "clang-format" },
 				go = { "goimports-reviser" },
-				http = { "kulala" },
+				-- http = { "kulala" },
 				rust = { "rustfmt" },
 				terraform = { "terraform_fmt" },
 				-- fish = { "prettier" },

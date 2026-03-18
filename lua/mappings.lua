@@ -128,12 +128,6 @@ s.movement = {
 	},
 }
 
-s.run = {
-	n = {
-		["<leader>rh"] = { "<cmd> Rest run <CR>", "run http on cursor" },
-	},
-}
-
 s.git = {
 	n = {
 		["<leader>gc"] = { "<cmd>Telescope git_commits<CR>", "  Git commits" },
@@ -175,6 +169,7 @@ s.session = {
 s.run = {
 	n = {
 		["<leader>rr"] = { "<cmd>lua require('runner').run() <CR>", "run the current buffer" },
+		["<leader>rh"] = { "<cmd> Rest run <CR>", "run http on cursor" },
 	},
 }
 
@@ -363,6 +358,10 @@ vim.keymap.set({ "o", "x" }, "O", '<cmd>lua require("various-textobjs").subword(
 vim.keymap.set({ "o", "x" }, "q", '<cmd>lua require("various-textobjs").toNextQuotationMark()<CR>')
 vim.keymap.set({ "o", "x" }, "]", '<cmd>lua require("various-textobjs").toNextClosingBracket()<CR>')
 vim.keymap.set({ "o", "x" }, "'", '<cmd>lua require("various-textobjs").anyQuote("inner")<CR>')
+
+vim.keymap.set("x", "s", "<Plug>(nvim-surround-visual)", {
+	desc = "Add a surrounding pair around the cursor (insert mode)",
+})
 
 vim.keymap.set({ "o", "x" }, "o", "iw")
 
