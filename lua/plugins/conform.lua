@@ -4,7 +4,7 @@ return {
 		event = "BufWritePre", -- uncomment for format on save
 		opts = {
 			formatters_by_ft = {
-				javascript = { "prettier" },
+				-- javascript = { "prettier" },
 				typescript = { "prettier" },
 				javascriptreact = { "prettier" },
 				typescriptreact = { "prettier" },
